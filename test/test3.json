@@ -1,0 +1,26 @@
+{
+	"filters": {
+		"point": [
+			{
+				"name": "swag",
+				"radius": 5000000000,
+				"point": {
+					"lon": 65.583028,
+					"lat": 22.154578
+				}
+			}
+		],
+		"date": [
+			{
+				"name": "fdate",
+				"start": "2011-12-30T23:00:00.000Z",
+				"end": "2018-01-30T23:00:00.000Z"
+			}
+		]
+	},
+	"signal": "1",
+	"interval": "100.0",
+	"min": 500,
+	"max": 5000,
+	"expression": "((swag*fdate)+swag)"
+}

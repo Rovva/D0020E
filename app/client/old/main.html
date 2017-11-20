@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+
+        }
+        #app {
+            margin: 0px 0px 50px 0px;
+
+        }
+
+
+        path {
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+
+        #checklist div {
+            width: 50%;
+            float: left;
+        }
+
+        #titletext {
+            margin: 0px 0px 50px 0px;
+
+        }
+
+
+        #form{
+            max-width: 450px;
+            background: #FAFAFA;
+            padding: 30px;
+            margin: 50px auto;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            border: 6px solid #305A72;
+        }
+        #form ul{
+            padding:0;
+            list-style:none;
+        }
+
+        #form li {
+
+            margin: 0px 0px 0px 0px;
+        }
+
+        #form p {
+            margin-bottom: 0px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #form ul li{
+            display: block;
+            min-height: 35px;
+        }
+        #form ul li  .field-style{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            padding: 8px;
+            outline: none;
+            border: 1px solid #B0CFE0;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+
+        }#form ul li  .field-style:focus{
+             box-shadow: 0 0 5px #B0CFE0;
+             border:1px solid #B0CFE0;
+         }
+        #form ul li .field-split{
+            width: 49%;
+        }
+        #form ul li .field-full{
+            width: 100%;
+        }
+        #form ul li input.align-left{
+            float:left;
+        }
+        #form ul li input.align-right{
+            float:right;
+        }
+        #form ul li textarea{
+            width: 100%;
+            height: 100px;
+        }
+        #form ul li input[type="button"],
+        #form ul li input[type="submit"] {
+            -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+            box-shadow: inset 0px 1px 0px 0px #3985B1;
+            background-color: #216288;
+            border: 1px solid #17445E;
+            display: inline-block;
+            cursor: pointer;
+            color: #FFFFFF;
+            padding: 8px 18px;
+            text-decoration: none;
+            font: 12px Arial, Helvetica, sans-serif;
+        }
+        #form ul li input[type="button"]:hover,
+        #form ul li input[type="submit"]:hover {
+            background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+            background-color: #28739E;
+        }
+
+        .arc text {
+            font: 10px sans-serif;
+            text-anchor: middle;
+        }
+
+        .arc path {
+            stroke: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<div id="form">
+    <form>
+        <ul>
+            <li>
+                <p>Välj mätning(ar):</p>
+                <input list="measurements" name="measurementsFrom" class="field-style field-split align-left" placeholder="Från">
+                <datalist id="measurements">
+                    <option value="Mätning 1 2016-11-20 8:30">
+                    <option value="Mätning 2 2016-11-21 9:00">
+                </datalist>
+                <input list="measurementsTo" name="measurementsTo" class="field-style field-split align-left" placeholder="Till">
+                <datalist id="measurementsTo">
+                    <option value="Mätning 1 2016-11-20 8:30">
+                    <option value="Mätning 2 2016-11-21 9:00">
+                </datalist>
+            </li>
+            <p id="titletext">Välj grafer:</p>
+            <li id="checklist">
+                <div><input type="checkbox" name="linear" > Linjär</div>
+                <div><input type="checkbox" name="graph2" > Cirkeldiagram</div>
+            </li>
+            <li id="checklist">
+                <div><input type="checkbox" name="graph3"  > Stapeldiagram</div>
+                <div><input type="checkbox" name="graph4"  > </div>
+            </li>
+            <li id="checklist">
+                <div><input type="checkbox" name="graph5"  /> Graf 5</div>
+                <div><input type="checkbox" name="graph6"  /> Graf 6</div>
+            </li>
+
+            <p id="titletext">Välj data:</p>
+            <li id="checklist">
+                <div><input type="checkbox" name="data1" > Tempratur</div>
+                <div><input type="checkbox" name="data2" > Fuktighet</div>
+            </li>
+            <li id="checklist">
+                <div><input type="checkbox" name="data3"  > Friktion</div>
+                <div><input type="checkbox" name="data4"  > Data 4</div>
+            </li>
+            <li id="checklist">
+                <div><input type="checkbox" name="data5"  /> Data 5</div>
+                <div><input type="checkbox" name="data6"  /> Data 6</div>
+            </li>
+            <li>
+                <input type="submit" value="Visa data" />
+            </li>
+        </ul>
+    </form>
+</div>
+
+<img src="wids.png">
+
+<script>
+    function linear() {
+        // Set the dimensions of the canvas / graph
+        var margin = {top: 30, right: 20, bottom: 30, left: 50},
+            width = 600 - margin.left - margin.right,
+            height = 270 - margin.top - margin.bottom;
+
+        // Parse the date / time
+        var parseDate = d3.time.format("%d-%b-%y").parse;
+
+        // Set the ranges
+        var x = d3.time.scale().range([0, width]);
+        var y = d3.scale.linear().range([height, 0]);
+
+        // Define the axes
+        var xAxis = d3.svg.axis().scale(x)
+            .orient("bottom").ticks(5);
+
+        var yAxis = d3.svg.axis().scale(y)
+            .orient("left").ticks(5);
+
+        // Define the line
+        var valueline = d3.svg.line()
+            .x(function (d) {
+                return x(d.date);
+            })
+            .y(function (d) {
+                return y(d.close);
+            });
+
+        // Adds the svg canvas
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("margin", "0px auto")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Get the data
+        d3.csv("data.csv", function (error, data) {
+            data.forEach(function (d) {
+                d.date = parseDate(d.date);
+                d.close = +d.close;
+            });
+
+            // Scale the range of the data
+            x.domain(d3.extent(data, function (d) {
+                return d.date;
+            }));
+            y.domain([0, d3.max(data, function (d) {
+                return d.close;
+            })]);
+
+            // Add the valueline path.
+            svg.append("path")
+                .attr("class", "line")
+                .attr("d", valueline(data));
+
+            // Add the X Axis
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            // Add the Y Axis
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis);
+
+        });
+    };
+
+    function circle() {
+        var width = 960,
+            height = 500,
+            radius = Math.min(width, height) / 2;
+
+        var color = d3.scale.ordinal()
+            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+        var arc = d3.svg.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
+
+        var labelArc = d3.svg.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
+
+        var pie = d3.layout.pie()
+            .sort(null)
+            .value(function(d) { return d.population; });
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+        d3.csv("datacircle.csv", type, function(error, data) {
+            if (error) throw error;
+
+            var g = svg.selectAll(".arc")
+                .data(pie(data))
+                .enter().append("g")
+                .attr("class", "arc");
+
+            g.append("path")
+                .attr("d", arc)
+                .style("fill", function(d) { return color(d.data.age); });
+
+            g.append("text")
+                .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+                .attr("dy", ".35em")
+                .text(function(d) { return d.data.age; });
+        });
+
+        function type(d) {
+            d.population = +d.population;
+            return d;
+        }
+
+
+    }
+
+    linear();
+    circle();
+
+</script>
+</body>
+</html>

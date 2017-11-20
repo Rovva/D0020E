@@ -1,0 +1,20 @@
+{
+	"filters": {
+		"point": [
+			{
+				"lon": 65.583028,
+				"lat": 22.154578,
+				"radius": "2",
+				"name": "swag"
+      }
+		],
+		"date": [
+			{
+				"start": "2013-12-30T23:00:00.000Z",
+				"end": "2014-01-30T23:00:00.000Z",
+				"name": "fdate"
+			}
+		]
+	},
+	"condition": "fdate AND swag"
+}
