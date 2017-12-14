@@ -2,6 +2,7 @@ var con = require("./connection.js"),
 	util = require("util");
 
 function createMeasurementIndex(func) {
+	
 	con.elasticsearch.indices.create({
 		index: "measurement",
 		body: {
@@ -59,7 +60,7 @@ function deleteIndex(ix, func) {
 
 
 function pushData(start, end, count, func) {
-	con.mysql.query(util.format("SELECT * FROM datareceiver_roadeyedata LIMIT %d,%d", start, end-start), function(err, res, f) {
+	con.mysql.query(util.format("SELECT * FROM db.datareceiver_roadeyedata LIMIT %d,%d", start, end-start), function(err, res, f) {
 		index = { 
 			index: {
 				_index: "measurement", 
@@ -114,7 +115,7 @@ if(clean) {
 else {
 	createMeasurementIndex(function() {
 		console.log("and now it begins....");
-		con.mysql.query("SELECT COUNT(*) as count FROM datareceiver_roadeyedata", function(err, res, f) {
+		con.mysql.query("SELECT COUNT(*) as count FROM db.datareceiver_roadeyedata", function(err, res, f) {
 			var count = res[0].count;
 			pushData(0, 100000, count, function() {
 				con.close();

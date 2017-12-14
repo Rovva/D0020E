@@ -1,0 +1,5 @@
+#!/bin/bash
+
+RCM_NET="rcm-network"
+
+docker run --name rcm-mysql --net=$RCM_NET -e MYSQL_ROOT_PASSWORD="pass" -e MYSQL_DATABASE="db" -e MYSQL_USER="user" -e MYSQL_PASSWORD="pass" -d mysql:8.0.3

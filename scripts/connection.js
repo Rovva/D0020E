@@ -3,10 +3,10 @@ var elasticsearch = require("elasticsearch"),
 	util = require("util");
 
 var s_conn = mysql.createConnection({
-	host: "",
-	user: "",
-	password: "",
-	database: ""
+	host: "172.18.0.3",
+	user: "user",
+	password: "pass",
+	database: "db"
 }); s_conn.connect();
 var e_conn = new elasticsearch.Client({
 	host: util.format("%s:9200", process.env.ELASTICSEARCH || "127.0.0.1"),

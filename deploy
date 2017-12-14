@@ -13,4 +13,4 @@ docker run -d -p $RCM_EXPORT_IP:80 --name=rcm-web --net=$RCM_NET rcm-web
 
 # Pull the rows from mysql db to elasticsearch
 docker build --build-arg elasticsearch_ip=$RCM_EL -t rcm-pull scripts/
-docker run -a --net=$RCM_NET --name=rcm-pull rcm-pull
+docker run --net=$RCM_NET --name=rcm-pull rcm-pull
