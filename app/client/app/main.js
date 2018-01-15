@@ -1,5 +1,4 @@
 
-
 var map, heatmap;
 var markers = [];
 var positions = [];
@@ -8,7 +7,6 @@ var selectionType = 0;
 var tmp;
 var polygonExists = false;
 var allMarkers = [];
-var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 var savedFilters = [];
 
@@ -18,15 +16,16 @@ var selectedLogic = "";
 var zoomThreshold;
 var visiblePoints;
 
+//setup map using googleMaps api. Adds a drawing manager to the map and sets up various style options.
 function initMap() {
 
 
-    var uluru = {lat: 65.581631, lng: 22.160044};
+    var centerPos = {lat: 65.581631, lng: 22.160044};
 
 
     zoomThreshold = 6;
     map = new google.maps.Map(document.getElementById('map'), {
-        center: uluru,
+        center: centerPos,
         zoom: zoomThreshold,
         mapTypeId: "satellite"
     });
@@ -362,6 +361,7 @@ function convertFilter () {
     return returnFilters;
 }
 
+//Requests to display a chart, currently hard coded to only display SWIMDS - change to handle more request types
 function submit (graph) {
     var filters = convertFilter();
 

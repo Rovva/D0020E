@@ -1,6 +1,7 @@
 var con = require("./connection.js"),
 	util = require("util");
-
+	
+//Creates indexes for elasticsearch 
 function createMeasurementIndex(func) {
 	
 	con.elasticsearch.indices.create({
@@ -58,7 +59,14 @@ function deleteIndex(ix, func) {
 	});
 }
 
-
+/*Push data from mysql to body, Column names are: 
+surface_condition possible values are Snow, Wet, Ice, Moist and Slush (SWIMDS).
+signal1 - signal 3
+friction
+road_temperature
+air_temperature
+air_humidity
+*/
 function pushData(start, end, count, func) {
 	con.mysql.query(util.format("SELECT * FROM db.datareceiver_roadeyedata LIMIT %d,%d", start, end-start), function(err, res, f) {
 		index = { 
@@ -84,10 +92,8 @@ function pushData(start, end, count, func) {
 				friction: r.friction,
 				road_temperature: r.road_temperature,
 				air_temperature: r.air_temperature,
-				air_humidity: r.air_humidit,
-				air_temperature: r.air_temperature,
 				air_humidity: r.air_humidity,
-				drive: 0
+				drive: 0		//not sure what this is used for...
 			});
 		}
 		res = null;

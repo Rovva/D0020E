@@ -2,12 +2,16 @@ var elasticsearch = require("elasticsearch"),
 	mysql = require("mysql"),
 	util = require("util");
 
+	
+//Establish connection with MySQL database
 var s_conn = mysql.createConnection({
-	host: "172.18.0.3",
+	host: "rcm-mysql",
 	user: "user",
 	password: "pass",
 	database: "db"
 }); s_conn.connect();
+
+//Establish connection with Elasticsearch 
 var e_conn = new elasticsearch.Client({
 	host: util.format("%s:9200", process.env.ELASTICSEARCH || "127.0.0.1"),
 	log: [

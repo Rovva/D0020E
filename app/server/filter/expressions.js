@@ -1,3 +1,7 @@
+/*sets up a logical expression with the following logic:
+and = *
+or = +
+*/
 function Expression(expression, filters) {
 	var _expression = expression;
 	var _filters = filters;

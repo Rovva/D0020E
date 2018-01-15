@@ -14,7 +14,7 @@ app.set("address", process.env.ADDRESS || "127.0.0.1");
 // Index and stuff
 app.use("/", express.static(path.join(__dirname, "../client")));
 
-// so we can use all the data Xd
+// so we can use all the data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

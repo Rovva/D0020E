@@ -1,3 +1,4 @@
+//makes a AJAX(Async. javascript and XML) post to /api/url where url is the request type. Runs the obj onData method if there was no error.
 function Api() {
   var endpoint = "/api/";
 
