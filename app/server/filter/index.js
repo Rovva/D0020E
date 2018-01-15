@@ -1,25 +1,20 @@
 var util = require("util");
 
 var filter = require("./filters"),
-	ensure = require("./ensure"),
 	filter_expression = require("./expressions.js");
 
-
+/*Get and set data such as dates, location, friction etc. into arrays*/
 function Filter() {
 	var _filters = {};
 	var _types = {
 		point: {
 		  is: function(points) {
-			return ensure(points, [
-					{
 						name: "",
 						radius: 1,
 						point: {
 							lat: 1.1,
 							lon: 1.1
 						}
-					}
-				]);
 		  },
 		  parse: function(points) {
 			for(var i = 0; i<points.length; i++) {
@@ -40,46 +35,29 @@ function Filter() {
 		/*
 		date2: {
 			is: function(dates2) {
-				return ensure(dates2, [
-					{
 						name: "",
-
-					}
-				])
-
 			}
 		}
 		[
-
 			start "2012"
 			end "2018"
-
 			start "01"
 			emd "03"
-
 			start "13"
 			end "24"
-
 			start "00:00"
 			end "08:00"
-
 			"2012-01-13T00:00Z"
 			"2012-01-13T08:00Z"
-
 			"2012-01-14T00:00Z"
 			"2012-01-14T08:00Z"
-
 		]
 		*/
 		date: {
 		  is: function(dates) {
-			  return ensure(dates, [
-				  {
 					  name: "", // kiss
 					  start: "", // "2015-01-01T12:10:30Z"
 					  end: "" // "2017-01-01T12:10:30Z"
-				  }
-			  ]);
 		  },
 		  parse: function(dates) {
 			for(var i = 0; i<dates.length; i++) {
@@ -90,8 +68,6 @@ function Filter() {
 		},
 		polygon: {
 		  is: function(polygons) {
-			  return ensure(polygons, [
-				  {
 					  name: "",
 					  points: [
 						  {
@@ -99,8 +75,6 @@ function Filter() {
 							  lat: 1.1
 						  }
 					  ]
-				  }
-			  ]);
 		  },
 		  parse: function(polygons) {
 				for(var i = 0; i<polygons.length; i++) {
@@ -117,14 +91,10 @@ function Filter() {
 		},
 		signal: {
 		  is: function(signals) {
-			  return ensure(signals, [
-				  {
 					  name: "",
 					  signal: 1,
 					  min: 1,
 					  max: 1
-				  }
-			  ]);
 		  },
 		  parse: function(signals) {
 			for(var i = 0; i<signals.length; i++) {
@@ -137,13 +107,9 @@ function Filter() {
 		},
 		road_temperature: {
 		  is: function(r_temp) {
-			  return ensure(r_temp, [
-				  {
 					  name: "",
 					  min: 1,
 					  max: 1
-				  }
-			  ]);
 		  },
 		  parse: function(road_temperatures) {
 			for(var i = 0; i<road_temperatures.length; i++) {
@@ -158,13 +124,9 @@ function Filter() {
 
 		friction: {
 		  is: function(fric) {
-			  return ensure(fric, [
-				  {
 					  name: "",
 					  min: 1,
 					  max: 1
-				  }
-			  ]);
 		  },
 		  parse: function(frictions) {
 			for (var i = 0; i < frictions.length; i++) {
@@ -179,13 +141,9 @@ function Filter() {
 
 		air_temperature: {
 		  is: function(air_temp) {
-			  return ensure(air_temp, [
-				  {
 					  name: "",
 					  min: 1,
 					  max: 1
-				  }
-			  ]);
 		  },
 		  parse: function(air_temperatures) {
 			for (var i = 0; i < air_temperatures.length; i++) {
@@ -200,13 +158,9 @@ function Filter() {
 
 		air_humidity: {
 		  is: function(air_hum) {
-			  return ensure(air_hum, [
-				  {
 					  name: "",
 					  min: 1,
 					  max: 1
-				  }
-			  ]);
 		  },
 		  parse: function(air_humidities) {
 			for(var i = 0; i < air_humidites.length; i++) {
@@ -220,12 +174,8 @@ function Filter() {
 		},
 		swimds: {
 		  is: function(swimds) {
-			  return ensure(swimds, [
-				  {
 					  name: "",
 					  swimds: 1
-				  }
-			  ]);
 		  },
 		  parse: function(swimdss) {
 			  for(var i = 0; i<swimdss.length; i++) {
