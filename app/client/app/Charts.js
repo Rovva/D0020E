@@ -1,6 +1,10 @@
 
 var graphCounter = 0;
 
+/*
+It should return a color depending of case, used by the charts functions in this file.
+*/
+
 function getColor (type) {
     switch (type) {
         case 0: return "#A5F2F3";
@@ -11,6 +15,10 @@ function getColor (type) {
         case 5: return "#b3ab93";
         default: return "#40a4df";
     }
+    
+/*
+Returns what type of parameter depending on the case. Used in drawChart which is also used by main.js
+*/
 
 }
 
@@ -26,6 +34,13 @@ function getLabel (key) {
         default: return "Unknown";
     }
 }
+
+
+
+/*
+Old chart drawer, used plotly.js (graphical library) Not used anywhere. (DEAD CODE, BUT COULD BE USEFUL
+IF WE DECIDE TO CHANGE THE I TO A MORE DYNAMIC VERSION.
+*/
 
 function drawChartOld(type,inData) {
 
@@ -89,6 +104,10 @@ function drawChartOld(type,inData) {
 
 }
 
+/*
+Decides what type of chart to draw, (used in main.js). Here is where we will implement linear graph!
+*/
+
 function drawChart(type,data) {
     switch (type) {
         case "pie": {
@@ -103,27 +122,11 @@ function drawChart(type,data) {
     }
 }
 
+/*
+Uses D3JS to create a chart instead of Plotly.js.
+*/
+
 function drawHistogram(data) {
-
-    /*
-     var inData = [
-     {
-     "key": 6,
-     "doc_count": 12
-     },
-
-     {
-     "key": 1,
-     "doc_count": 15
-     },
-
-     {
-     "key": 3,
-     "doc_count": 13
-     }
-     ];
-     */
-
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 600 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
@@ -184,6 +187,10 @@ function drawHistogram(data) {
     window.scrollTo(0, document.getElementById("graphs_container").getBoundingClientRect().bottom);
 }
 
+/*
+Uses D3JS to create a chart instead of Plotly.js.
+*/
+
 function drawPie(data){
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
@@ -243,7 +250,9 @@ function drawPie(data){
         .text(function(d) { return d.data.key; });
 
 
-
+/*
+Not sure what this function actually does.
+*/
     function tweenPie(b) {
         b.innerRadius = 0;
         var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
