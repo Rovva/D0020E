@@ -1,3 +1,6 @@
+/*
+success and error returns an object with an object retrieved from constants.js. The objects will have a status of 1 or 0.
+*/
 var constants = require("./constants"),
   elaticsearch = require("elasticsearch"),
   success = function() {
@@ -7,6 +10,10 @@ var constants = require("./constants"),
     return constants.getErrorObject();
   }
 
+/*
+Creates global variables _elasticsearch, _filters, _default_query and _query. _default_query will hold certain variables and at the end _query = _default_query for some reason (?)
+This function is called in routes.js several times
+*/
 function Query(elaticsearch, filters) {
   var _elasticsearch = elaticsearch,
     _filters = filters,

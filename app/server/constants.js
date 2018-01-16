@@ -12,11 +12,17 @@ module.exports = {
     "ERROR": 0,
     "SUCCESS": 1
   },
+  /*
+	This function returns a new object with a status code equal to SUCCESS (1) 
+  */
   getSuccessObject: function() {
     var obj = this.default_return_object;
     obj.status_code = this.status_codes.SUCCESS;
     return obj;
   },
+  /*
+	This function returns a new object with a status code equal to ERROR (0) 
+  */
   getErrorObject: function() {
     var obj = this.default_return_object;
     obj.status_code = this.status_codes.ERROR;

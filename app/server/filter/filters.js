@@ -1,3 +1,6 @@
+/*
+Cant find any function calls from this one. Unless the export in the last row does something.
+*/
 function BuildMinMax(attribute, min, max) {
     var filter = { range: {} };
     filter.range[attribute] = {};
