@@ -1,5 +1,3 @@
-var ensure = require("./ensure");
-
 function BuildMinMax(attribute, min, max) {
     var filter = { range: {} };
     filter.range[attribute] = {};
