@@ -1,4 +1,9 @@
 //CLASS
+
+/*
+I believe this script handles the selection of points on google maps, while the ponts.js are the actual points on the map.
+*/
+
 function Heatmap(map) {
     this.heatMap = null;
     this.points = [];
