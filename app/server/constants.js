@@ -1,3 +1,8 @@
+
+/*
+This class is some kind of error-managing when using objects, used in query.js and routes.js
+*/
+
 module.exports = {
   "default_return_object": {
   	"status_code": 1,
