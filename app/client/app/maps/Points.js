@@ -73,33 +73,6 @@ function VisiblePoints(map, filterObj) {
         } else {
             this.pointsArray = filterObj;
         }
-
-        /*
-        new google.maps.Marker({
-            position: nw,
-            label: "A",
-            map: map
-        });
-
-        new google.maps.Marker({
-            position: ne,
-            label: "B",
-            map: map
-        });
-
-        new google.maps.Marker({
-            position: se,
-            label: "C",
-            map: map
-        });
-
-        new google.maps.Marker({
-            position: sw,
-            label: "D",
-            map: map
-        });
-        */
-
         var api = new Api();
         api.request("points", this.pointsArray, this);
     }
