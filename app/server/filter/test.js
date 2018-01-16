@@ -3,7 +3,7 @@ var Filter = require("./index").Filter;
 var filters = {
   point: [
     {
-      name: "kiss",
+      name: "point",
       radius: 100,
       point: {
         lat: 66.66,
@@ -13,14 +13,14 @@ var filters = {
   ],
   date: [
     {
-      name: "bajs",
+      name: "date",
       start: (new Date(2014,08,22)).toISOString(),
       end: (new Date(2015,07,30)).toISOString()
     }
   ]
 }
 
-var expression = "kiss*bajs+kiss";
+var expression = "point*date+point";
 
 var f = new Filter();
 f.QueryParams(filters, expression);

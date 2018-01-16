@@ -46,6 +46,9 @@ function initMap() {
         once = true;
     });
 
+    /*
+    * Draw a circle, polygon or rectangle on google maps as a marker.
+    */
     var drawingManager = new google.maps.drawing.DrawingManager({
         drawingMode: google.maps.drawing.OverlayType.POLYGON,
         drawingControl: true,
@@ -93,36 +96,8 @@ function initMap() {
 
     drawingManager.addListener('overlaycomplete', function (marker) {
 
-
-        /*
-         switch(marker.type) {
-         case "circle": {
-         var center = marker.getCenter();
-         var radius = marker.getRadius();
-         marker.setMap(null);
-
-         marker = new google.maps.Circle({
-         map: map,
-         center: center,
-         radius: radius
-         });
-
-
-         break;
-         }
-
-         }
-         */
         id = "F" + savedFilters.length.toString();
         marker.id = id;
-
-        /*
-         marker.labelMarker = new google.maps.Marker({
-         position: center,
-         label: id,
-         map: map
-         });
-         */
 
         savedFilters.push({
             type: marker.type,
@@ -133,8 +108,6 @@ function initMap() {
         allMarkers.push(marker);
         loadFilters();
     });
-
-    //document.getElementById("selectionButton0").style.background = "#4CAF50";
 
 }
 
@@ -149,6 +122,9 @@ function newLogic () {
     }
 }
 
+/*
+ * Clears all markers on the map.
+ */
 function clearFilters () {
   allMarkers.forEach (function(marker) {
       marker.overlay.setMap(null);
@@ -174,6 +150,7 @@ function clearGraphs () {
     document.getElementById('graphs_container').innerHTML = '';
 }
 
+/* Delete a specific mark or filter. */
 function deleteFilter(isFilter,i) {
     if(isFilter) {
         if(["circle","polygon","rectangle"].indexOf(savedFilters[i].type) != -1) {
@@ -187,58 +164,7 @@ function deleteFilter(isFilter,i) {
     }
 }
 
-/*
 
-{
- "filters": {
-     "point": [
-         name: "",
-         radius: 1,
-         point: {
-         lat: 1.1,
-         lon: 1.1
-         }
-     ],
-     "polygon": [
-         {
-             "name": "sdad",
-             "points": [
-                 {
-                     "lon": 434.4343,
-                     "lat": 43.43232
-                 },
-                 {
-
-                 },
-                 {
-
-                 }
-            ]
-        }
-     ],
-     "date": [
-         {
-             name: "",
-             start: "",
-             end: ""
-         }
-     ],
-     "signal": [
-         {
-             name: "",
-             signal: 1,
-             min: 1,
-             max: 1
-         }
-     ]
- },
-
-     "signal": "1",
-     "interval": "100.0",
-     "min": 500,
-     "max": 5000
- }
- */
 
 function convertFilter () {
     var returnFilters = {
@@ -337,6 +263,7 @@ function convertFilter () {
         });
     });
 
+
     if(document.getElementById(selectedLogic) == null) {
         var exportLogic = "";
     } else {
@@ -395,7 +322,6 @@ function loadFilters () {
     savedFilters.forEach (function (filter) {
         var element = document.createElement("div");
         var icon = document.createElement("img");
-        //icon.src = '../assets/media/filter_map.png';
 
 
         switch(true) {

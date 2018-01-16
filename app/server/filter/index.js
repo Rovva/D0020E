@@ -55,7 +55,7 @@ function Filter() {
 		*/
 		date: {
 		  is: function(dates) {
-					  name: "", // kiss
+					  name: "", // point
 					  start: "", // "2015-01-01T12:10:30Z"
 					  end: "" // "2017-01-01T12:10:30Z"
 		  },
