@@ -2,6 +2,11 @@
  * Dont even try
  * to understand this
  * */
+
+/*
+Appears to not be in use anywhere anymore, keep for now (?) to see if we need to remake an ensure of ourselves at somepoint,
+but probably not. Now this is just a legacy.
+*/
 function ensure(data, struct) {
 	return true;
 	if(typeof(data) == typeof(struct)) {
