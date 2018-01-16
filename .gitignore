@@ -1,0 +1,3 @@
+# This file exist, so that git ignores MacOS .DS_Store
+
+.DS_Store
