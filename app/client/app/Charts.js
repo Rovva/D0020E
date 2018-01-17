@@ -38,8 +38,7 @@ function getLabel (key) {
 
 
 /*
-Old chart drawer, used plotly.js (graphical library) Not used anywhere. (DEAD CODE, BUT COULD BE USEFUL
-IF WE DECIDE TO CHANGE THE I TO A MORE DYNAMIC VERSION.
+Old chart drawer, used plotly.js (graphical library) Not used anywhere. Testing required if function can be deleted.
 */
 
 function drawChartOld(type,inData) {
