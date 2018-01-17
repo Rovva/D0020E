@@ -1,10 +1,14 @@
 //Class
+
+/*
+I believe this functionality handles the actual points themselves while heat_map.js selects the points.
+*/
+
 function VisiblePoints(map, filterObj) {
     this.googlePoints = [];
     this.pointsArray = [];
     this.onGooglePoints = null;
 
-    this.yolo = "swag";
 
     var onPoints = function(points) {
       this.pointsArray = points;
