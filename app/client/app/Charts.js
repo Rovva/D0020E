@@ -250,7 +250,7 @@ function drawPie(data){
 
 
 /*
-Not sure what this function actually does.
+tweenPie is a type of chart, but seems like this one is not implemented yet, just a beginner function.
 */
     function tweenPie(b) {
         b.innerRadius = 0;
