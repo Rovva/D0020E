@@ -7,7 +7,6 @@ I believe this script handles the selection of points on google maps, while the 
 function Heatmap(map) {
     this.heatMap = null;
     this.points = [];
-   // var map = map;
     var zoomThreshold = 12;
 
     var zoomUpdate = function() {
@@ -28,7 +27,6 @@ function Heatmap(map) {
 
     this.initialize = function() {
         this.create();
-        //map.addListener("zoom_changed", zoomUpdate);
     }
 
     this.create = function() {
