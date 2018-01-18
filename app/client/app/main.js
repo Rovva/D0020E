@@ -165,7 +165,10 @@ function deleteFilter(isFilter,i) {
 }
 
 
-
+/*
+Takes the global var savedFilters and takes all the saved filters in it and sets different lon/lats depending on if the filter is a polygon, rectangle or circle.
+Also seems to hard code data values such as snow, wet, ice, moist etc (?)
+*/
 function convertFilter () {
     var returnFilters = {
         date: [],
@@ -303,7 +306,9 @@ function submit (graph) {
     });
 }
 
-
+/*
+Updates logic choises, is used in loadFilters()
+*/
 function updateLogic () {
     savedLogic.forEach(function (logic) {
         var logicBox = document.getElementById(logic.id);
@@ -313,7 +318,9 @@ function updateLogic () {
     });
 }
 
-
+/*
+Loads filters depending on the filter's type (if its a date, a polygon/circle/rectange, etc) and then uses updateLogic() to update the filters.
+*/
 function loadFilters () {
 
 
@@ -429,6 +436,10 @@ function selectLogic(logicID) {
     loadFilters();
 }
 
+/*
+Saves a filter as "F" and the lenght of the filter into another object that is then saved in another array. 
+All the filters has 4 variables in the array so the lenght will probably always be 4 unless it is changed in any subtile place or way.
+*/
 function saveFilter(filterObj) {
     filterObj.name = "F" + savedFilters.length.toString();
     savedFilters.push(filterObj);
