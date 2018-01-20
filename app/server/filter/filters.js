@@ -12,6 +12,7 @@ function BuildMinMax(attribute, min, max) {
     return filter;
 }
 /*
+ Seems like the line below creates a "shortcut" to the above function and is used
  heavily in index.js like: filter.MinMax("timestamp", date.start, date.end)
 */
 exports.MinMax = BuildMinMax;
