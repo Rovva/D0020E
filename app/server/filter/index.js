@@ -32,27 +32,6 @@ function Filter() {
 		  }
 		},
 
-		/*
-		date2: {
-			is: function(dates2) {
-						name: "",
-			}
-		}
-		[
-			start "2012"
-			end "2018"
-			start "01"
-			emd "03"
-			start "13"
-			end "24"
-			start "00:00"
-			end "08:00"
-			"2012-01-13T00:00Z"
-			"2012-01-13T08:00Z"
-			"2012-01-14T00:00Z"
-			"2012-01-14T08:00Z"
-		]
-		*/
 		date: {
 		  is: function(dates) {
 					  name: "", // point
@@ -172,6 +151,7 @@ function Filter() {
 			}
 		  }
 		},
+		/* Swimds may be removed? */
 		swimds: {
 		  is: function(swimds) {
 					  name: "",
