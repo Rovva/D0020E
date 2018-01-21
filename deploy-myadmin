@@ -1,4 +1,6 @@
 #!/bin/bash
+# To login to phpmyadmin, just go to localhost:8181 and log in with either user or root, 
+# password for both are: "pass".
 
 RCM_NET="rcm-network"
 
