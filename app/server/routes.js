@@ -16,7 +16,6 @@ var error = function() {
 // connect to database in beginning of each /api request.
 router.use(db.middleware);
 
-// Make filters great again!
 router.use(filter.middleware);
 
 // capture GET /version
@@ -37,9 +36,7 @@ router.post("/version", function(req, res) {
 /*
  * Do a bucket geo_distance aggregation with some specific radius
  * and then aggregate with a metric
- * ... profit
- *
- * */
+ */
 router.post("/points", function(req, res) {
 	var capSize = 60000 // MaxSize nu men ändras!
 	var precision = 7 // ändras om definerat inom intervallet.

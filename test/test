@@ -1,2 +1,0 @@
-#!/bin/bash
-curl -H "Content-Type: application/json" -d "@test3.json" -X POST "localhost:80/api/$1" | python -m json.tool

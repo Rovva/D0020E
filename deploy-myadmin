@@ -1,0 +1,7 @@
+#!/bin/bash
+# To login to phpmyadmin, just go to localhost:8181 and log in with either user or root, 
+# password for both are: "pass".
+
+RCM_NET="rcm-network"
+
+docker run --name rcm-myadmin --net=$RCM_NET -d --link rcm-mysql:db  -p 8181:80 phpmyadmin/phpmyadmin
