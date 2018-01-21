@@ -22,14 +22,14 @@ router.use(filter.middleware);
 router.get("/version", function(req, res) {
 	var version = success();
 	version.data.version = "0.0.1337";
-	version.data.name = "Osama Bin Laden";
+	version.data.name = "Data Name";
 	res.json(version);
 });
 
 router.post("/version", function(req, res) {
   var version = error();
 	version.data.version = "0.0.1337";
-	version.data.name = "Osama Bin Laden";
+	version.data.name = "Data Name";
 	res.json(version);
 });
 
