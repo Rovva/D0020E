@@ -1,6 +1,4 @@
 
-var graphCounter = 0;
-
 /*
 It should return a color depending of case, used by the charts functions in this file.
 */
@@ -16,11 +14,11 @@ function getColor (type) {
         default: return "#40a4df";
     }
     
-/*
-Returns what type of parameter depending on the case. Used in drawChart which is also used by main.js
-*/
-
 }
+
+/*
+Returns what type of parameter depending on the case. Used in drawChart which is also used by main.js (?)
+*/
 
 function getLabel (key) {
     switch (key) {
@@ -38,7 +36,7 @@ function getLabel (key) {
 
 
 /*
-Decides what type of chart to draw, (used in main.js). Here is where we will implement linear graph!
+Decides what type of chart to draw, (used in main.js). A case for linear graph will have to be implemented when working with graph implementation.
 */
 
 function drawChart(type,data) {
@@ -121,6 +119,11 @@ function drawHistogram(data) {
 }
 
 /*
+ADD A FUNCTION drawLinear(data), should be called from drawChart when a case for linear graphs has been made.
+*/
+
+
+/*
 Uses D3JS to create a chart instead of Plotly.js.
 */
 
@@ -184,7 +187,7 @@ function drawPie(data){
 
 
 /*
-tweenPie is a type of chart, but seems like this one is not implemented yet, just a beginner function.
+Belongs to the drawPie function but, not entirely sure what it actually does but without it the graphs does not work.
 */
     function tweenPie(b) {
         b.innerRadius = 0;
