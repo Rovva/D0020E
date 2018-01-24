@@ -300,7 +300,7 @@ function submit (graph) {
     var api = new Api();
     api.request("swimds",filters,{
         onData: function(data) {
-            //console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
             drawChart(graph,data);
         }
     });
