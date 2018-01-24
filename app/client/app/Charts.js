@@ -50,8 +50,24 @@ function drawChart(type,data) {
             drawHistogram(data);
             break;
         }
+/*
+        case "linearGraph": {
+            drawLinearGraph(data);
+            break;
+        }
+*/
     }
 }
+
+/*
+Uses D3JS to create a chart instead of Plotly.js.
+*/
+
+function drawLinearGraph(data){
+	
+}
+
+
 
 /*
 Uses D3JS to create a chart instead of Plotly.js.
