@@ -4,6 +4,8 @@ RCM_EXPORT_IP=8080
 RCM_EL="rcm-elasticsearch"
 RCM_NET="rcm-network"
 
+./deploy-myadmin
+
 docker network create $RCM_NET
 docker run -d --name=$RCM_EL --net=$RCM_NET elasticsearch
 
