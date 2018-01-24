@@ -182,7 +182,7 @@ router.post("/air_temperature", function(req, res) {
 });
 
 router.post("/road_temperature", function(req, res) {
-	console.log("air_temperature körs");
+	console.log("road_temperature körs");
 
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
@@ -194,7 +194,7 @@ router.post("/road_temperature", function(req, res) {
 
 	query.query(function(resp, obj, err) {
 		if(err == null)
-			obj.data = resp.aggregations.air_temp.buckets;
+			obj.data = resp.aggregations.road_temp.buckets;
 
 		res.json(obj);
 	});
