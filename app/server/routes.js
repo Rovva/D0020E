@@ -179,9 +179,28 @@ router.post("/air_temperature", function(req, res) {
 
 		res.json(obj);
 	});
-
-
 });
+
+router.post("/road_temperature", function(req, res) {
+	console.log("air_temperature körs");
+
+	var query = new Query(req.db.elasticsearch, req.filters);
+	query.set(function(query) {
+		query.body.aggregations = {
+			road_temp : { terms : { field: "road_temperature" } }
+		};
+		return query;
+	});
+
+	query.query(function(resp, obj, err) {
+		if(err == null)
+			obj.data = resp.aggregations.air_temp.buckets;
+
+		res.json(obj);
+	});
+});
+
+
 
 
 module.exports = router;
