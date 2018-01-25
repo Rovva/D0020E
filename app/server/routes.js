@@ -201,12 +201,12 @@ router.post("/road_temperature", function(req, res) {
 });
 
 router.post("/air_humidity", function(req, res) {
-	console.log("road_temperature körs");
+	console.log("air humidity körs");
 
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			road_temp : { terms : { field: "road_temperature" } }
+			road_temp : { terms : { field: "air_humidity" } }
 		};
 		return query;
 	});
@@ -221,12 +221,12 @@ router.post("/air_humidity", function(req, res) {
 
 
 router.post("/friction", function(req, res) {
-	console.log("road_temperature körs");
+	console.log("friction körs");
 
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			road_temp : { terms : { field: "road_temperature" } }
+			road_temp : { terms : { field: "friction" } }
 		};
 		return query;
 	});
