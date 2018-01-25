@@ -168,7 +168,7 @@ router.post("/air_temperature", function(req, res) {
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			air_temp : { terms : { field: "air_temperature" } }
+			air_temperature : { terms : { field: "air_temperature" } }
 		};
 		return query;
 	});
@@ -187,7 +187,7 @@ router.post("/road_temperature", function(req, res) {
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			road_temp : { terms : { field: "road_temperature" } }
+			road_temperature : { terms : { field: "road_temperature" } }
 		};
 		return query;
 	});
@@ -206,7 +206,7 @@ router.post("/air_humidity", function(req, res) {
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			road_temp : { terms : { field: "air_humidity" } }
+			air_humidity : { terms : { field: "air_humidity" } }
 		};
 		return query;
 	});
@@ -226,7 +226,7 @@ router.post("/friction", function(req, res) {
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			road_temp : { terms : { field: "friction" } }
+			friction : { terms : { field: "friction" } }
 		};
 		return query;
 	});
