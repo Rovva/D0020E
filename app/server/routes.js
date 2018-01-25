@@ -200,7 +200,44 @@ router.post("/road_temperature", function(req, res) {
 	});
 });
 
+router.post("/air_humidity", function(req, res) {
+	console.log("road_temperature körs");
 
+	var query = new Query(req.db.elasticsearch, req.filters);
+	query.set(function(query) {
+		query.body.aggregations = {
+			road_temp : { terms : { field: "road_temperature" } }
+		};
+		return query;
+	});
+
+	query.query(function(resp, obj, err) {
+		if(err == null)
+			obj.data = resp.aggregations.road_temp.buckets;
+
+		res.json(obj);
+	});
+});
+
+
+router.post("/friction", function(req, res) {
+	console.log("road_temperature körs");
+
+	var query = new Query(req.db.elasticsearch, req.filters);
+	query.set(function(query) {
+		query.body.aggregations = {
+			road_temp : { terms : { field: "road_temperature" } }
+		};
+		return query;
+	});
+
+	query.query(function(resp, obj, err) {
+		if(err == null)
+			obj.data = resp.aggregations.road_temp.buckets;
+
+		res.json(obj);
+	});
+});
 
 
 module.exports = router;
