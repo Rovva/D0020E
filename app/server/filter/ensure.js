@@ -8,7 +8,7 @@ Appears to not be in use anywhere anymore, keep for now (?) to see if we need to
 but probably not. Now this is just a legacy.
 */
 function ensure(data, struct) {
-	//return true;
+	return true;
 	if(typeof(data) == typeof(struct)) {
 		if(typeof(data) == "object") {
 			var data_is_array = Array.isArray(data);
