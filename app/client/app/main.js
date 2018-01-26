@@ -114,7 +114,7 @@ function initMap() {
 function newLogic () {
     savedLogic.push({
         "id": ("logic_" + savedLogic.length.toString()),
-        "string": "text..."
+        "string": "" // Lägg tillbaka "text..." om placeholder ej fungerar
     });
     loadFilters();
     if(savedLogic.length == 1) {
@@ -270,7 +270,7 @@ function convertFilter () {
     if(document.getElementById(selectedLogic) == null) {
         var exportLogic = "";
     } else {
-        if(document.getElementById(selectedLogic).value == "text...") {
+        if(document.getElementById(selectedLogic).value == "") { // Lägg tillbaka "text..." om placeholder ej fungerar.
             exportLogic = "";
         } else {
             var exportLogic = document.getElementById(selectedLogic).value;
@@ -379,6 +379,11 @@ function loadFilters () {
         var textField = document.createElement("input");
         textField.value = logic.string;
         textField.id = logic.id;
+        document.getElementsByName('textField')[elementCounter].placeholder='New Logic Name';
+        console.log(elementCounter);
+
+        /* ('#element1_id').attr('placeholder','Some New Text 1');       */
+
         if(selectedLogic == logic.id) {
             logicIcon.src = "../assets/media/logic_green.png";
         } else {
