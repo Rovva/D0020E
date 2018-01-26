@@ -297,12 +297,14 @@ function submit (graph) {
 
     console.log("Filters: " + JSON.stringify(filters));
     /*
-    console.log("@@@@@" + Object.keys(filters.filters));
-    console.log("@@@@@" + Object.values(filters.filters));
-    console.log("@@@@@" + Object.keys(filters.filters.swimds));
-    console.log("@@@@@" + Object.values(filters.filters.swimds));
+    console.log("@@@@@ " + Object.keys(filters.filters));
+    console.log("@@@@@ " + Object.values(filters.filters));
+    console.log("@@@@@ " + Object.keys(filters.filters.swimds));
+    console.log("@@@@@ " + Object.values(filters.filters.swimds));
     console.log(Object.values(filters.filters.swimds)[0].name); //Example for retrieving the data from the filter
     console.log(Object.values(filters.filters.swimds)[1].swimds); //Example for retrieving the data from the filter
+    console.log("@@@@@@@@@ " + Object.keys(filters.filters)[1]);   //Example for getting the filter type	
+    console.log("@@@@@@@@@ " + Object.values(filters.expression)); //Example for getting all the chars in the logic expression
     */
     var api = new Api();
     api.request("air_temperature",filters,{
