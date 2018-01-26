@@ -388,7 +388,7 @@ function loadFilters () {
         textField.id = logic.id;
         //document.getElementsByName('textField')[0].placeholder='New Logic Name';
 
-        /* ('#element1_id').attr('placeholder','Some New Text 1');       */
+        /* Placeholdern ovan fungerar ej, ska testas */
 
         if(selectedLogic == logic.id) {
             logicIcon.src = "../assets/media/logic_green.png";
