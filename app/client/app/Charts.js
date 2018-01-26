@@ -64,7 +64,7 @@ Uses D3JS to create a chart instead of Plotly.js.
 */
 
 function drawLinearGraph(data){
-	
+    
 }
 
 
@@ -79,10 +79,10 @@ function drawHistogram(data) {
         height = 600 - margin.top - margin.bottom;
 
 // set the ranges
-    var rangeOne = d3.scaleBand()
+    var x = d3.scaleBand()
         .range([0, width])
         .padding(0.1);
-    var rangeTwo = d3.scaleLinear()
+    var y = d3.scaleLinear()
         .range([height, 0]);
 
 
@@ -94,7 +94,7 @@ function drawHistogram(data) {
     var svg = d3.select("#graphs_container").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-        .append("group")
+        .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
@@ -102,8 +102,8 @@ function drawHistogram(data) {
 
 
     // Scale the range of the data in the domains
-    rangeOne.domain(data.map(function(d) { return getLabel(d.key); }));
-    rangeTwo.domain([0, d3.max(data, function(d) { return d.doc_count; })]);
+    x.domain(data.map(function(d) { return getLabel(d.key); }));
+    y.domain([0, d3.max(data, function(d) { return d.doc_count; })]);
 
 
     // append the rectangles for the bar chart
@@ -111,24 +111,21 @@ function drawHistogram(data) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("rangeOne", function(d) { return rangeOne(getLabel(d.key)); })
-        .attr("width", rangeOne.bandwidth())
-        .attr("rangeTwo", function(d) { return rangeTwo
-    (d.doc_count); })
-        .attr("height", function(d) { return height - rangeTwo
-    (d.doc_count); });
+        .attr("x", function(d) { return x(getLabel(d.key)); })
+        .attr("width", x.bandwidth())
+        .attr("y", function(d) { return y(d.doc_count); })
+        .attr("height", function(d) { return height - y(d.doc_count); });
 
 
 
-    // add the rangeOne Axis
-    svg.append("group")
+    // add the x Axis
+    svg.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(rangeOne));
+        .call(d3.axisBottom(x));
 
-    // add the rangeTwo Axis
-    svg.append("group")
-        .call(d3.axisLeft(rangeTwo
-    ));
+    // add the y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
 
     var btn = document.getElementById("graphsButton");
     $(btn).toggleClass("graphs-button-open",true);
@@ -177,7 +174,7 @@ function drawPie(data){
     var svg = d3.select("#graphs_container").append("svg")
         .attr("width", width)
         .attr("height", height)
-        .append("group")
+        .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 
@@ -187,19 +184,19 @@ function drawPie(data){
         d.key = getLabel(d.key);
     });
 
-    // "group element is a container used to group other SVG elements"
-    var group = svg.selectAll(".arc")
+    // "g element is a container used to group other SVG elements"
+    var g = svg.selectAll(".arc")
         .data(pie(data))
-        .enter().append("group")
+        .enter().append("g")
         .attr("class", "arc");
 
     // append path
-    group.append("path")
+    g.append("path")
         .attr("d", arc)
         .style("fill", function(d) { return color(d.data.key); })
 
     // append text
-    group.append("text")
+    g.append("text")
         .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
         .attr("dy", ".35em")
         .text(function(d) { return d.data.key; });
