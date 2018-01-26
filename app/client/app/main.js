@@ -386,7 +386,7 @@ function loadFilters () {
         var textField = document.createElement("input");
         textField.value = logic.string;
         textField.id = logic.id;
-        document.getElementsByName('textField')[0].placeholder='New Logic Name';
+        //document.getElementsByName('textField')[0].placeholder='New Logic Name';
 
         /* ('#element1_id').attr('placeholder','Some New Text 1');       */
 
