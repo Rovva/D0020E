@@ -296,9 +296,16 @@ function submit (graph) {
     var filters = convertFilter();
 
     console.log("Filters: " + JSON.stringify(filters));
-
+    /*
+    console.log("@@@@@" + Object.keys(filters.filters));
+    console.log("@@@@@" + Object.values(filters.filters));
+    console.log("@@@@@" + Object.keys(filters.filters.swimds));
+    console.log("@@@@@" + Object.values(filters.filters.swimds));
+    console.log(Object.values(filters.filters.swimds)[0].name); //Example for retrieving the data from the filter
+    console.log(Object.values(filters.filters.swimds)[1].swimds); //Example for retrieving the data from the filter
+    */
     var api = new Api();
-    api.request("swimds",filters,{
+    api.request("air_temperature",filters,{
         onData: function(data) {
             console.log(JSON.stringify(data));
             drawChart(graph,data);
