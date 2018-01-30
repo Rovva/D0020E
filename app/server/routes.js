@@ -213,7 +213,7 @@ router.post("/air_humidity", function(req, res) {
 
 	query.query(function(resp, obj, err) {
 		if(err == null)
-			obj.data = resp.aggregations.air_humidity.buckets;
+			obj.data = resp.aggregations.air_hum.buckets;
 
 		res.json(obj);
 	});
@@ -233,7 +233,7 @@ router.post("/friction", function(req, res) {
 
 	query.query(function(resp, obj, err) {
 		if(err == null)
-			obj.data = resp.aggregations.friction.buckets;
+			obj.data = resp.aggregations.fric.buckets;
 
 		res.json(obj);
 	});
