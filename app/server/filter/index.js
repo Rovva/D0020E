@@ -113,12 +113,12 @@ function Filter() {
 			  ]);
 		  },
 		  parse: function(road_temperatures) {
-			for(var i = 0; i<road_temperatures.length; i++) {
-			  var temp = road_temperatures[i];
-			  var min = temp.min;
-			  var max = temp.max;
+			for(var i = 0; i < road_temperatures.length; i++) {
+			  var road_temperature = road_temperatures[i];
+			  var min = road_temperature.min;
+			  var max = road_temperature.max;
 
-			  _filters[temp.name] = filter.MinMax("road_temperature", min, max);
+			  _filters[road_temperature.name] = filter.MinMax("road_temperature", min, max);
 			}
 		  }
 		},
@@ -160,7 +160,7 @@ function Filter() {
 			  var min = air_temperature.min;
 			  var max = air_temperature.max;
 
-			  _filters[friction.name] = filter.MinMax("air_temperature", min, max);
+			  _filters[air_temperature.name] = filter.MinMax("air_temperature", min, max);
 			}
 		  }
 		},
