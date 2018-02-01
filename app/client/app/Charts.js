@@ -100,7 +100,7 @@ var svg = d3.select("#graphs_container").append("svg")
 d3.csv("app/data.csv", function(error, data) {
   if (error) throw error;
 
-//console.log(data[0]);
+//console.log(data[0]); (Remember to comment out this line after testing, breaks other graphs...)
 
   // format the data
   data.forEach(function(d) {
