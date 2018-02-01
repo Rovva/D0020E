@@ -42,6 +42,7 @@ Decides what type of chart to draw, (used in main.js). A case for linear graph w
 */
 
 function drawChart(type,data) {
+    //console.log("Graphtype: " + JSON.stringify(type));
     switch (type) {
         case "pie": {
             drawPie(data);
@@ -99,7 +100,7 @@ var svg = d3.select("#graphs_container").append("svg")
 d3.csv("app/data.csv", function(error, data) {
   if (error) throw error;
 
-console.log(data[0]);
+//console.log(data[0]);
 
   // format the data
   data.forEach(function(d) {
