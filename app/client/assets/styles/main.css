@@ -17,6 +17,11 @@ body {
     margin-top: auto;
 }
 
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
 
 .bar {
     fill: steelblue;
