@@ -15,12 +15,14 @@ Creates global variables _elasticsearch, _filters, _default_query and _query. _d
 This function is called in routes.js several times
 */
 function Query(elaticsearch, filters) {
+
+	console.log("query filters:" + JSON.stringify(filters));
   var _elasticsearch = elaticsearch,
     _filters = filters,
     _default_query = {
       index: "measurement",
       body: {
-        size: 0,
+        size: 10,
         query: _filters,
   			aggregations: {}
       }

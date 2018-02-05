@@ -182,7 +182,7 @@ router.post("/air_temperature", function(req, res) {
 
 	query.query(function(resp, obj, err) {
 		if(err == null){
-			obj.data = resp.aggregations.air_temp;
+			obj.data = resp.aggregations.air_temp.buckets;
 			console.log("data i routes:" + JSON.stringify(obj.data));		
 		}
 		res.json(obj);

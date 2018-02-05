@@ -307,20 +307,16 @@ function submit (graph) {
     console.log("@@@@@@@@@ " + Object.values(filters.expression)); //Example for getting all the chars in the logic expression
     */
 
-    for(var i = 0; i<Object.keys(filters.filters).length; i++) {
-	var temp = Object.keys(filters.filters)[i];
-	if(temp == "point") {
-		temp = "points";
-	}
+
 	
 	var api = new Api();
-	api.request(temp,filters,{
+	api.request("air_temperature",filters,{
 		onData: function(data) {
 		    console.log(JSON.stringify(data));
 		    drawChart(graph,data);
 		}
 	    });
-    }
+    
 
 }
 
