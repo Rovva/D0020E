@@ -42,7 +42,7 @@ Decides what type of chart to draw, (used in main.js). A case for linear graph w
 */
 
 function drawChart(type,data) {
-    //console.log("Graphtype: " + JSON.stringify(type));
+    console.log("Graphtype: " + JSON.stringify(type));
     switch (type) {
         case "pie": {
             drawPie(data);
