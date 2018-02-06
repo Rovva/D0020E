@@ -258,14 +258,14 @@ function convertFilter () {
         }
 
     });
-
+/*
     [["snow",6],["wet",3],["ice",5],["moist",2],["dry",1],["slush",4]].forEach(function(filterData) {
         returnFilters["swimds"].push({
             name: filterData[0],
             swimds: filterData[1]
         });
     });
-
+*/
 
     if(document.getElementById(selectedLogic) == null) {
         var exportLogic = "";

@@ -81,8 +81,8 @@ var y = d3.scaleLinear().range([height, 0]);
 
 // define the line
 var valueline = d3.line()
-    .x(function(d) { return x(d.key); })
-    .y(function(d) { return y(d.doc_count); });
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.key); });
 
 // append the svg obgect to the body of the page
 // appends a 'group' element to 'svg'
@@ -96,8 +96,8 @@ var svg = d3.select("#graphs_container").append("svg")
 
 
   // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.key; }));
-  y.domain([0, d3.max(data, function(d) { return d.doc_count; })]);
+  x.domain(d3.extent(data, function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.key; })]);
 
 
   // Add the valueline path.
@@ -128,6 +128,7 @@ var svg = d3.select("#graphs_container").append("svg")
   });
 
 }); */   
+
 
  var btn = document.getElementById("graphsButton");
     $(btn).toggleClass("graphs-button-open",true);

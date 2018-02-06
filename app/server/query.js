@@ -22,7 +22,7 @@ function Query(elaticsearch, filters) {
     _default_query = {
       index: "measurement",
       body: {
-        size: 10,
+        size: 0,
         query: _filters,
   			aggregations: {}
       }

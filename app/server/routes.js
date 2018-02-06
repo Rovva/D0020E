@@ -16,10 +16,7 @@ var error = function() {
 // connect to database in beginning of each /api request.
 router.use(db.middleware);
 
-
-
-
-//router.use(filter.middleware);
+router.use(filter.middleware);
 
 // capture GET /version
 router.get("/version", function(req, res) {
@@ -167,8 +164,17 @@ router.post("/swimds", function(req, res) {
 
 router.post("/air_temperature", function(req, res) {
 	console.log("air_temperature körs");
-	filters = {match_all :{}} 
-	var query = new Query(req.db.elasticsearch, filters);
+	/*
+	filters = {
+		range:{
+			timestamp:{
+				gte:"2018-01-01T16:07:15Z",
+				lte:"2018-02-01T16:07:28Z"
+			}		
+		}
+	}
+	*/
+	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
 			air_temp : { terms : { field: "air_temperature" } ,
@@ -182,7 +188,13 @@ router.post("/air_temperature", function(req, res) {
 
 	query.query(function(resp, obj, err) {
 		if(err == null){
-			obj.data = resp.aggregations.air_temp;
+			temp = resp.aggregations.air_temp;
+			var data = [];
+			for(var i = 0; i < temp.buckets.length;i++){
+				data.push({key:temp.buckets[i].key, date:temp.buckets[i].date.buckets[0].key_as_string});
+			}
+			obj.data = data;
+
 			console.log("data i routes:" + JSON.stringify(obj.data));		
 		}
 		res.json(obj);
