@@ -42,7 +42,6 @@ Decides what type of chart to draw, (used in main.js). A case for linear graph w
 */
 
 function drawChart(type,data) {
-    console.log("Graphtype: " + JSON.stringify(type));
     switch (type) {
         case "pie": {
             drawPie(data);
@@ -71,7 +70,7 @@ function drawLinearGraph(data){
         height = 600 - margin.top - margin.bottom;
 
 // parse the date / time
-var parseTime = d3.timeParse("%d-%b-%y");
+var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
 
 // set the ranges
 var x = d3.scaleTime().range([0, width]);
@@ -90,14 +89,20 @@ var valueline = d3.line()
 var svg = d3.select("#graphs_container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
+	.append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+  // format the data
+  data.forEach(function(d) {
+      d.date = parseTime(d.date);
+  });
+
 
 
   // Scale the range of the data
   x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.key; })]);
+  y.domain([0, d3.max(data, function(d) { return d.key; })]);			//todo: add scale from d3.min....
 
 
   // Add the valueline path.
@@ -115,19 +120,10 @@ var svg = d3.select("#graphs_container").append("svg")
   svg.append("g")
       .call(d3.axisLeft(y));
 
-// Get the data
-/*d3.csv("app/data.csv", function(error, data) {
-  if (error) throw error;
-
 //console.log(data[0]); (Remember to comment out this line after testing, breaks other graphs...)
 
-  // format the data
-  data.forEach(function(d) {
-      d.date = parseTime(d.date);
-      d.close = +d.close;
-  });
 
-}); */   
+ 
 
 
  var btn = document.getElementById("graphsButton");

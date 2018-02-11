@@ -308,7 +308,6 @@ function submit (graph) {
     */
 
 
-	
 	var api = new Api();
 	api.request("air_temperature",filters,{
 		onData: function(data) {
@@ -316,8 +315,6 @@ function submit (graph) {
 		    drawChart(graph,data);
 		}
 	    });
-    
-
 }
 
 /*
