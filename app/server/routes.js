@@ -193,7 +193,10 @@ router.post("/air_temperature", function(req, res) {
 			for(var i = 0; i < temp.buckets.length;i++){
 				data.push({key:temp.buckets[i].key, date:temp.buckets[i].date.buckets[0].key_as_string});
 			}
-			obj.data = data;
+			obj.data = data.sort(function(a,b){
+				return new Date(b.date) - new Date(a.date);
+			}); 
+
 
 			console.log("data i routes:" + JSON.stringify(obj.data));		
 		}
