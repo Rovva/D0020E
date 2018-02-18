@@ -62,11 +62,11 @@ body {
 
 
 #side-nav {
-  width: 40em;
+  width: 250px;
   height: 100%;
   position: absolute;
   top: 0px;
-  left: -40em;
+  left: -250px;
   background-color: rgba(255,255,255,1);
   transition: all 0.1s;
   z-index: 20;
@@ -239,11 +239,11 @@ body {
 }
 
 #graphs_div {
-    width: 40em;
+    width: 450px;
     height: 100%;
     position: absolute;
     top: 0px;
-    right: -40em;
+    right: -450px;
     background-color: rgba(255,255,255,1);
     transition: all 0.1s;
     z-index: 20;
@@ -263,7 +263,7 @@ body {
 }
 
 #graphs_container {
-    overflow-y: scroll;
+    overflow: visible;
 }
 
 #graphsButton {
