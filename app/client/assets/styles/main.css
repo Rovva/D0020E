@@ -11,18 +11,21 @@ body {
     overflow-x: hidden;
 }
 
+/* Hittar inte klassen någonstans! Gammal? */
 .svgChart {
     float: left;
     z-index: 10;
     margin-top: auto;
 }
 
+/* charts.js Valueline path */
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
 }
 
+/* charts.js rectangles for bar chart */
 .bar {
     fill: steelblue;
 }
@@ -31,6 +34,7 @@ body {
     fill: lightblue;
 }
 
+/* Hittar inte d3-tip klassen... Gammal? */
 .d3-tip {
     line-height: 1;
     padding: 6px;
@@ -262,9 +266,10 @@ body {
     position: relative;
 }
 
-/* Vad gör denna? */
+/* Vad gör denna? 
 #graphs_container_big {
 }
+*/
 
 #graphs_container {
     overflow-y: scroll;
