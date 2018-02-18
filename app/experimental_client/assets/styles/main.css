@@ -186,44 +186,6 @@ body {
     margin-top: 0;
 }
 
-#logic-container {
-    width: 100%;
-    min-height: 30%;
-    float: left;
-}
-
-#logic-container div {
-    width: 95%;
-    height: 40px;
-    border: 3px solid black;
-    border-radius: 5px;
-    float: left;
-    margin: 1em 1% 0 1%;
-}
-
-#logic-container img {
-    height: 100%;
-    width: height;
-}
-
-#logic-container input {
-    width: 92%;
-    height: 100%;
-    border: hidden;
-    margin-left: 2%;
-}
-
-#logic-container button {
-    height: 2em;
-    width: 2em;
-    background-image: url("https://cdn4.iconfinder.com/data/icons/icocentre-free-icons/114/f-cross_256-128.png");
-    background-size: 100% 100%;
-    background-color: #ffffff;
-    border: none;
-    float: right;
-    margin-top: 0;
-}
-
 #menuButton {
     background-image: url("../media/arrow-right.png");
     background-size: 50px 50px;
@@ -238,6 +200,7 @@ body {
     background-image: url("../media/arrow-left.png") !important;
 }
 
+/* The biggest div for the right panel with graphs */
 #graphs_div {
     width: 450px;
     height: 100%;
@@ -252,7 +215,7 @@ body {
 .graphs-div-open {
     right: 0px !important;
 }
-
+/* The first div inside "graphs_div" */
 #inner-graphs {
     width: 100%;
     height: 100%;
