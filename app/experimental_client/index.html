@@ -24,6 +24,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
+                                <button id="new_filter_button" onclick="openModal('filter_modal')" class="clearButton btn btn-md btn-block btn-primary">New filter</button>
+                            </div>
+                            <div class="col">
                                 <button onclick="clearFilters()" class="clearButton btn btn-md btn-block btn-primary">Clear filters</button>
                             </div>
                             <!-- 
@@ -35,8 +38,6 @@
                 </div>
 
                 <div id="side-nav-big">
-                    <h1><u>Filters</u></h1>
-                    <button id="new_filter_button" onclick="openModal('filter_modal')" class="btn btn-md btn-block btn-primary">New filter</button>
                     <div id="filter-container"></div>
                     <!--
                     <h1><u>Logic</u></h1>
