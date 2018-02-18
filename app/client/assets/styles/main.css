@@ -185,6 +185,7 @@ body {
     float: right;
     margin-top: 0;
 }
+/* logic plats
 
 #logic-container {
     width: 100%;
@@ -224,6 +225,8 @@ body {
     margin-top: 0;
 }
 
+*/
+
 #menuButton {
     background-image: url("../media/arrow-right.png");
     background-size: 50px 50px;
@@ -259,6 +262,7 @@ body {
     position: relative;
 }
 
+/* Vad gör denna? */
 #graphs_container_big {
 }
 
