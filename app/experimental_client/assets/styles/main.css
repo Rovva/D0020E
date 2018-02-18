@@ -176,6 +176,8 @@ body {
 }
 
 #filter-container button {
+    height: 32px;
+    width: 32px;
     background-image: url("https://cdn4.iconfinder.com/data/icons/icocentre-free-icons/114/f-cross_256-128.png");
     background-size: 100% 100%;
     background-color: #ffffff;
