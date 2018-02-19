@@ -26,9 +26,9 @@ function createMeasurementIndex(func) {
 		}
 	}, function(err, res, stat) {
 		if(err) {
-			console.log("ERR: Failed to create index. It probably already exists.");
+			console.log("ERR:",err);
 			process.exit();
-			//console.log("ERR:",err);
+			
 		}
 		else {
 			console.log("RES:",res);
@@ -67,8 +67,12 @@ road_temperature
 air_temperature
 air_humidity
 */
-function pushData(start, end, count, func) {
-	con.mysql.query(util.format("SELECT * FROM db.datareceiver_roadeyedata LIMIT %d,%d", start, end-start), function(err, res, f) {
+
+function pushData(start, end,func) {
+	var count = 0;
+	con.mysql.query(util.format("SELECT * FROM db.datareceiver_roadeyedata LIMIT %d,%d", start,end), function(err, res, f) {
+		if(err){throw err}
+		console.log(res);
 		index = { 
 			index: {
 				_index: "measurement", 
@@ -76,6 +80,10 @@ function pushData(start, end, count, func) {
 			}
 		};
 		var body = [];
+		
+		result = res.length;//uppdateras inte
+		
+		
 		for(var i = 0; i<res.length; i++) {
 			var r = res[i];
 			body.push(index);
@@ -96,36 +104,42 @@ function pushData(start, end, count, func) {
 				drive: 0		//not sure what this is used for...
 			});
 		}
-		res = null;
+
+			
 		con.elasticsearch.bulk({
 			body: body	
-		}, function(err, res, stat) {
-			if(end < count)
-				pushData(start + (end-start), end + (end-start), count, func);
-			else
-				func();
+		}, function(err, result, stat) {
+			func(res);
 		});
-
+		
 		console.log("*****************************");
-		console.log("start:",start,"end:",end,"count:",count);
+		console.log("start:",start,"end:",end,"res.length: ",res.length);
+
+		
 	});
+	
+	console.log("count i push:", count);
+	return count;
 }
 
-clean = !true;
-if(clean) {
-	console.log("deleting...");
-	deleteIndex("measurement", function() {
-		con.close();	
-	});
-}
-else {
-	createMeasurementIndex(function() {
-		console.log("and now it begins....");
-		con.mysql.query("SELECT COUNT(*) as count FROM db.datareceiver_roadeyedata", function(err, res, f) {
-			var count = res[0].count;
-			pushData(0, 100000, count, function() {
-				con.close();
-			});
+async function pollForNewEntries(waitTime){
+	var count = 0;
+	while(true){
+		//push all data from 0 -- end
+		console.log("count: ",count);
+		pushData(count,100000, function(res) {
+			count += res.length;
+			
 		});
-	});
+		await sleep(waitTime);
+	}
 }
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+createMeasurementIndex(function() {
+	pollForNewEntries(30000);
+});
+
