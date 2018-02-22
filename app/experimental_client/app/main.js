@@ -464,6 +464,7 @@ function saveFilter(filterObj) {
 
 function toggleMenu (btn) {
     //$('submit1').height($('submit1').width());
+    // Line below makes the site crash, has something to do with the 3 graphbuttons
     //var submitButton = document.getElementById('submit1');
     //console.log(JSON.stringify($('submit1').height()));
     //submitButton.style.width = submitButton.style.height.toString();
