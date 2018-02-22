@@ -103,8 +103,7 @@ body {
     height: 100%;
     position: relative;
 }
-/* These attributes has to do with the 3 buttons on the bottom 
-   and can be removed
+
 #side-nav-10 {
     width: 100%;
     height: 10%;
@@ -135,7 +134,7 @@ body {
     background-size: 100% 100%;
     margin: 0% 20% 0% 20%;
 }
-*/
+
 
 #side-nav-big {
     width: 100%;
