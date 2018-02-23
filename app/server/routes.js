@@ -73,7 +73,8 @@ router.post("/points", function(req, res) {
 	});
 	query.query(function(resp, obj, err) {
 		if(err == null)
-			obj.data = resp.aggregations.grid.buckets;
+			obj.data = resp.aggregations;
+			//obj.data = resp.aggregations.grid.buckets;
 
 		res.json(obj);
 	});
