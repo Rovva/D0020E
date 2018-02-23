@@ -299,8 +299,8 @@ function convertFilter () {
     }
 
     returnFilters = {
-        filters: returnFilters,
-        expression: exportLogic
+        filters: returnFilters/*,
+        expression: exportLogic*/
     };
 
     return returnFilters;

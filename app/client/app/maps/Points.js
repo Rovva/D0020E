@@ -1,9 +1,8 @@
 //Class
 
 /*
-I believe this functionality handles the actual points themselves while heat_map.js selects the points.
+Handles the logic of selecting what points should be displayed on the map, if filterObj is null then all points on screen will be visible.
 */
-
 function VisiblePoints(map, filterObj) {
     this.googlePoints = [];
     this.pointsArray = [];
@@ -50,7 +49,7 @@ function VisiblePoints(map, filterObj) {
                 "filters": {
                     "polygon": [
                         {
-                            "name": "sdad",
+                            "name": "visible points",
                             "points": [
                                 {
                                     "lon": ne.lng,
@@ -72,7 +71,7 @@ function VisiblePoints(map, filterObj) {
                         }
                     ]
                 },
-                expression: "sdad"
+                expression: "exp-- will be removed..."
             };
         } else {
             this.pointsArray = filterObj;
