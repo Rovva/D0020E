@@ -24,33 +24,38 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <button id="new_filter_button" onclick="openModal('filter_modal')" class="clearButton btn btn-md btn-block btn-primary">New filter</button>
-                            </div>
-                            <div class="col">
                                 <button onclick="clearFilters()" class="clearButton btn btn-md btn-block btn-primary">Clear filters</button>
                             </div>
+                            <!-- Tar bort logic
+                            <div class="col">
+                                <button onclick="clearLogic()" class="clearButton btn btn-md btn-block btn-primary">Clear logic</button>
+                            </div>
+                            -->
                         </div>
                     </div>
                 </div>
 
                 <div id="side-nav-big">
+                    <h1><u>Filters</u></h1>
+                    <button id="new_filter_button" onclick="openModal('filter_modal')" class="btn btn-md btn-block btn-primary">New filter</button>
                     <div id="filter-container"></div>
-                    <!-- I do not know if this div is needed or not: --!>
+
+                    <!-- Tar bort logic
+                    <h1><u>Logic</u></h1>
+                    <button onclick="newLogic()" class="btn btn-md btn-block btn-primary">New logic</button>
                     <div id="logic-container"></div>
+                    -->
                 </div>
-                
+
                 <div id="side-nav-10">
-                <!-- Added a graphbutton for testing --!>
-                    <button id="new_filter_button" onclick="submit('linearGraph')" class="clearButton btn btn-md btn-block btn-primary">New Graph</button>
-                    <!-- Code for the three graphbuttons
                     <ul>
+                        <!-- linear graph is implemented here aswell, a button with an icon. -->
                         <li><div id="submit1" class="submitButton" onclick="submit('pie')" style="background-image: url('../assets/media/pie.png');"></div></li>
                         <li><div class="submitButton" onclick="submit('histogram')" style="background-image: url('../assets/media/bar.png');"></div></li>
 			             <li><div class="submitButton" onclick="submit('linearGraph')" style="background-image: url('../assets/media/linearGraph.png');"></div></li>
-                    </ul> --!>
-                    
+                    </ul>
                 </div>
-                
+
             </div>
         </div>
 
@@ -76,11 +81,6 @@
         <!-- <button id="new_filter_button">Create new filter</button> -->
 
         <!-- The Modal -->
-        
-       <!-- ################################################################################# --!>
-       <!-- We need to add html and JS code below to show more options after selecting time   --!>
-       <!-- ################################################################################# --!>
-
         <div id="filter_modal" class="modal">
 
             <!-- Filter Modal content -->
@@ -93,7 +93,7 @@
                 <p><div class="dropdown">
                     <button id="choose_filter_button" onclick="dropdownClick('choose_filter_dropdown')" class="dropbtn">Choose filter type</button>
                     <div id="choose_filter_dropdown" class="dropdown-content">
-                        <!-- <a onclick='loadModalContents("Time", "choose_filter_dropdown"), displayContentsDropdown("choose_filter_button","Time")'>Time</a> --!>
+                        <a onclick='loadModalContents("Time", "choose_filter_dropdown"), displayContentsDropdown("choose_filter_button","Time")'>Time</a>
                         <a onclick='loadModalContents("Signal", "choose_filter_dropdown"), displayContentsDropdown("choose_filter_button", "Signal")'>Signal</a>
                         <a onclick='loadModalContents("Road Temperature", "choose_filter_dropdown"), displayContentsDropdown("choose_filter_button", "Road Temperature")'>Road Temperature</a>
                         <a onclick='loadModalContents("Air Temperature", "choose_filter_dropdown"), displayContentsDropdown("choose_filter_button", "Air Temperature")'>Air Temperature</a>
@@ -102,23 +102,17 @@
                     </div>
                 </div></p>
 
-                <!-- dynamic content of Time will be loaded in this div below -->
-                <div id = "filter_modal_dynamic_content_box_time">
-                
-                </div>
-
                 <!-- dynamic content of the modal will be loaded to the div below -->
                 <div id = "filter_modal_dynamic_content_box">
-                
+
                 </div>
 
                 <p><button class="create_filter_button" onclick='createFilter("choose_filter_button")'>Create</button>
                 </p>
-                <br />
-                
             </div>
 
         </div>
+
     <!-- WORK IN PROGRESS. Ability to update filters upon clicking on them.
             See also main.js line 413 and update_filter.js -->
 

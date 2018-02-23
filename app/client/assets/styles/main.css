@@ -10,21 +10,19 @@
 body {
     overflow-x: hidden;
 }
-
-/* Hittar inte klassen någonstans! Gammal? */
+/* Hittar inte klassen n�gonstans! Gammal? */
+/* From here to: --> */
 .svgChart {
     float: left;
     z-index: 10;
     margin-top: auto;
 }
-
 /* charts.js Valueline path */
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
 }
-
 /* charts.js rectangles for bar chart */
 .bar {
     fill: steelblue;
@@ -33,7 +31,6 @@ body {
 .bar:hover {
     fill: lightblue;
 }
-
 /* Hittar inte d3-tip klassen... Gammal? */
 .d3-tip {
     line-height: 1;
@@ -63,14 +60,14 @@ body {
     top: 100%;
     left: 0;
 }
-
+/* <-- to here has to do with graphs */
 
 #side-nav {
-  width: 40em;
+  width: 250px;
   height: 100%;
   position: absolute;
   top: 0px;
-  left: -40em;
+  left: -250px;
   background-color: rgba(255,255,255,1);
   transition: all 0.1s;
   z-index: 20;
@@ -139,6 +136,7 @@ body {
     margin: 0% 20% 0% 20%;
 }
 
+
 #side-nav-big {
     width: 100%;
     height: 80%;
@@ -151,6 +149,8 @@ body {
     float: right;
     margin: 6% 1% 0% 0%;
 }
+/* This attribute is not needed anymore, as it was used for the "Filters"
+   and "Logic" headers
 
 #side-nav-big h1 {
     font-color: gray;
@@ -158,15 +158,17 @@ body {
     margin-left: 2%;
     margin-top: 5%;
 }
+*/
 
 #filter-container {
+    margin-top: 20px;
     width: 100%;
     min-height: 30%;
     float: left;
 }
 
 #filter-container div {
-    width: 31%;
+    width: 100px;
     height: 40px;
     border: 3px solid black;
     border-radius: 5px;
@@ -180,56 +182,14 @@ body {
 }
 
 #filter-container button {
-    height: 2em;
-    width: 2em;
+    height: 28px;
+    width: 28px;
     background-image: url("https://cdn4.iconfinder.com/data/icons/icocentre-free-icons/114/f-cross_256-128.png");
     background-size: 100% 100%;
     background-color: #ffffff;
     border: none;
     float: right;
-    margin-top: 0;
 }
-/* logic plats
-
-#logic-container {
-    width: 100%;
-    min-height: 30%;
-    float: left;
-}
-
-#logic-container div {
-    width: 95%;
-    height: 40px;
-    border: 3px solid black;
-    border-radius: 5px;
-    float: left;
-    margin: 1em 1% 0 1%;
-}
-
-#logic-container img {
-    height: 100%;
-    width: height;
-}
-
-#logic-container input {
-    width: 92%;
-    height: 100%;
-    border: hidden;
-    margin-left: 2%;
-}
-
-#logic-container button {
-    height: 2em;
-    width: 2em;
-    background-image: url("https://cdn4.iconfinder.com/data/icons/icocentre-free-icons/114/f-cross_256-128.png");
-    background-size: 100% 100%;
-    background-color: #ffffff;
-    border: none;
-    float: right;
-    margin-top: 0;
-}
-
-*/
 
 #menuButton {
     background-image: url("../media/arrow-right.png");
@@ -245,12 +205,13 @@ body {
     background-image: url("../media/arrow-left.png") !important;
 }
 
+/* The biggest div for the right panel with graphs */
 #graphs_div {
-    width: 40em;
+    width: 450px;
     height: 100%;
     position: absolute;
     top: 0px;
-    right: -40em;
+    right: -450px;
     background-color: rgba(255,255,255,1);
     transition: all 0.1s;
     z-index: 20;
@@ -259,22 +220,23 @@ body {
 .graphs-div-open {
     right: 0px !important;
 }
-
+/* The first div inside "graphs_div" and including the show/hide button */
 #inner-graphs {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-/* Vad gör denna? 
+/* This div is needed to place the button and graphs correctly */
 #graphs_container_big {
 }
-*/
 
+/* This div lists all the graphs */
 #graphs_container {
-    overflow-y: scroll;
+    overflow: visible;
 }
 
+/* The button to show or hide the graphpanel */
 #graphsButton {
     background-image: url("../media/arrow-left.png");
     background-size: 50px 50px;

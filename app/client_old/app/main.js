@@ -111,6 +111,8 @@ function initMap() {
 
 }
 
+/* Tar bort logic
+
 function newLogic () {
     savedLogic.push({
         "id": ("logic_" + savedLogic.length.toString()),
@@ -121,6 +123,8 @@ function newLogic () {
         selectLogic("logic_0");
     }
 }
+
+*/
 
 /*
  * Clears all markers on the map.
@@ -140,11 +144,15 @@ function openModal(modalName) {
     modal.style.display = "block";
 }
 
+/* Tar bort Logic
+
 function clearLogic () {
     savedLogic = [];
     document.getElementById('logic-container').innerHTML = '';
     selectedLogic = "";
 }
+
+*/
 
 function clearGraphs () {
     document.getElementById('graphs_container').innerHTML = '';
@@ -158,10 +166,14 @@ function deleteFilter(isFilter,i) {
         }
         savedFilters.splice(i,1);
         loadFilters();
-    } else {
-        savedLogic.splice(i,1);
+    }
+    /* Tar bort logic
+     else {
+        savedLogic.splice(i,1);     
         loadFilters();
     }
+    */
+
 }
 
 
@@ -267,6 +279,8 @@ function convertFilter () {
     });
 */
 
+/* Tar bort logic
+
     if(document.getElementById(selectedLogic) == null) {
         var exportLogic = "";
     } else {
@@ -276,6 +290,7 @@ function convertFilter () {
             var exportLogic = document.getElementById(selectedLogic).value;
         }
     }
+*/
 
     for(var key in returnFilters){
         if(returnFilters[key].length == 0) {
@@ -317,9 +332,9 @@ function submit (graph) {
 	    });
 }
 
-/*
+/*  Tar bort logic
 Updates logic choises, is used in loadFilters()
-*/
+
 function updateLogic () {
     savedLogic.forEach(function (logic) {
         var logicBox = document.getElementById(logic.id);
@@ -328,6 +343,8 @@ function updateLogic () {
         }
     });
 }
+
+*/
 
 /*
 Loads filters depending on the filter's type (if its a date, a polygon/circle/rectange, etc) and then uses updateLogic() to update the filters.
@@ -380,7 +397,9 @@ function loadFilters () {
         elementCounter++;
     });
 
-    updateLogic();
+    // updateLogic();
+
+    /* Tar bort logic
 
     elementCounter = 0;
     document.getElementById('logic-container').innerHTML = '';
@@ -390,9 +409,6 @@ function loadFilters () {
         var textField = document.createElement("input");
         textField.value = logic.string;
         textField.id = logic.id;
-        //document.getElementsByName('textField')[0].placeholder='New Logic Name';
-
-        /* Placeholdern ovan fungerar ej, ska testas */
 
         if(selectedLogic == logic.id) {
             logicIcon.src = "../assets/media/logic_green.png";
@@ -405,22 +421,17 @@ function loadFilters () {
         });
         logicIcon.id = "icon_" + logic.id;
 
-        /*var closeButton = document.createElement("button");
-        closeButton.value = elementCounter;
-        closeButton.onclick = function() {
-            deleteFilter(false,this.value);
-        };*/
-
         logicElement.appendChild(logicIcon);
         logicElement.appendChild(textField);
         //logicElement.appendChild(closeButton);
         document.getElementById('logic-container').appendChild(logicElement);
         elementCounter++;
     });
+    */
 }
 
 
-
+/*  Tar bort logic
 function selectLogic(logicID) {
     if(selectedLogic == logicID) {
         selectedLogic = "";
@@ -436,7 +447,7 @@ function selectLogic(logicID) {
             heatmap.replace(this.googlePoints);
         };
 
-        /*
+        ------------ tidigare utkommenterad ------------------
         var api = new Api();
         var theFilter = convertFilter();
         api.request("points", theFilter, {
@@ -445,11 +456,12 @@ function selectLogic(logicID) {
                 heatmap.replace(data);
             }
         });
-        */
+        -------------------------------------------------------  
 
     }
     loadFilters();
 }
+*/
 
 /*
 Saves a filter as "F" and the lenght of the filter into another object that is then saved in another array. 
@@ -464,10 +476,9 @@ function saveFilter(filterObj) {
 
 function toggleMenu (btn) {
     //$('submit1').height($('submit1').width());
-    // Line below makes the three graphbuttons function
     var submitButton = document.getElementById('submit1');
     //console.log(JSON.stringify($('submit1').height()));
-    //submitButton.style.width = submitButton.style.height.toString();
+    submitButton.style.width = submitButton.style.height.toString();
     $(btn).toggleClass("menu-button-open");
     $("#side-nav").toggleClass("side-nav-open");
 
