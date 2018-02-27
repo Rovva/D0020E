@@ -6,25 +6,13 @@ var filter = require("./filters"),
 
 
 function Filter() {
-	var _filters = {};
-	var _types = {
+	var _filters = {bool:{must:[]}};
+	/*var _types = {
 		point: {
-		  is: function(points) {
-			points: [
-					{
-						name: "",
-						radius: 1,
-						point: {
-							lat: 1.1,
-							lon: 1.1
-						}
-					}
-				];
-		  },
 		  parse: function(points) {
 			for(var i = 0; i<points.length; i++) {
 			  var point = points[i];
-			  _filters[point.name] = {
+			  _filters.push({
 				  geo_distance: {
 					distance: util.format("%sm", point.radius),
 					location: {
@@ -32,182 +20,33 @@ function Filter() {
 					  lon: point.point.lon
 					}
 				 }
-			  }
+			  });
 			}
 		  }
 		},
-
-	
 		date: {
-		  is: function(dates) {
-			  dates: [
-				  {
-					  name: "", // kiss
-					  start: "", // "2015-01-01T12:10:30Z"
-					  end: "" // "2017-01-01T12:10:30Z"
-				  }
-			  ];
-		  },
-		  parse: function(dates) {
-			for(var i = 0; i<dates.length; i++) {
-			  var date = dates[i];
-			  _filters[date.name] = filter.MinMax("timestamp", date.start, date.end);
-			}
+		  parse: function(date) {
+			console.log("date parsing", "date start", date.start);
+			  _filters.push(filter.MinMax("timestamp", date.start, date.end));
 		  }
 		},
 		polygon: {
-		  is: function(polygons) {
-			  return ensure(polygons, [
-				  {
-					  name: "",
-					  points: [
-						  {
-							  lon: 1.1,
-							  lat: 1.1
-						  }
-					  ]
-				  }
-			  ]);
-		  },
 		  parse: function(polygons) {
 				for(var i = 0; i<polygons.length; i++) {
 				  var polygon = polygons[i];
-				  _filters[polygon.name] = {
+				  _filters.push({
 					  geo_polygon: {
 						location: {
 						  points: polygon.points
 						}
 					  }
-				  }
+				  });
 				}
 		  }
-		},
-		signal: {
-		  is: function(signals) {
-			  signals: [
-				  {
-					  name: "",
-					  signal: 1,
-					  min: 1,
-					  max: 1
-				  }
-			  ];
-		  },
-		  parse: function(signals) {
-			for(var i = 0; i<signals.length; i++) {
-			  var signal = signals[i];
-			  var sig = util.format("s%s", ""+signal.signal);
-			  var name = signal.name;
-			  _filters[name] = filter.MinMax(sig, signal.min, signal.max);
-			}
-		  }
-		},
-		road_temperature: {
-		  is: function(r_temp) {
-			  r_temp: [
-				  {
-					  name: "",
-					  min: 1,
-					  max: 1
-				  }
-			  ];
-		  },
-		  parse: function(road_temperatures) {
-			for(var i = 0; i < road_temperatures.length; i++) {
-			  var road_temperature = road_temperatures[i];
-			  var min = road_temperature.min;
-			  var max = road_temperature.max;
+		}
+	};*/
 
-			  _filters[road_temperature.name] = filter.MinMax("road_temperature", min, max);
-			}
-		  }
-		},
-
-		friction: {
-		  is: function(fric) {
-			  fric: [
-				  {
-					  name: "",
-					  min: 1,
-					  max: 1
-				  }
-			  ];
-		  },
-		  parse: function(frictions) {
-			for (var i = 0; i < frictions.length; i++) {
-			  var friction = frictions[i];
-			  var min = friction.min;
-			  var max = friction.max;
-
-			  _filters[friction.name] = filter.MinMax("friction", min, max);
-			}
-		  }
-		},
-
-		air_temperature: {
-		  is: function(air_temp) {
-			  air_temp: [
-				  {
-					  name: "",
-					  min: 1,
-					  max: 1
-				  }
-			  ];
-		  },
-		  parse: function(air_temperatures) {
-			for (var i = 0; i < air_temperatures.length; i++) {
-			  var air_temperature = air_temperatures[i];
-			  var min = air_temperature.min;
-			  var max = air_temperature.max;
-
-			  _filters[air_temperature.name] = filter.MinMax("air_temperature", min, max);
-			}
-		  }
-		},
-
-		air_humidity: {
-		  is: function(air_hum) {
-			  air_hum: [
-				  {
-					  name: "",
-					  min: 1,
-					  max: 1
-				  }
-			  ];
-		  },
-		  parse: function(air_humidities) {
-			for(var i = 0; i < air_humidites.length; i++) {
-			  var air_humidity = air_humidities[i];
-			  var min = air_humidity.min;
-			  var max = air_humidity.max;
-
-			  _filters[air_humidity.name] = filter.MinMax("air_humidity", min, max);
-			}
-		  }
-		},
-		swimds: {
-		  is: function(swimds) {
-			  swimds: [
-				  {
-					  name: "",
-					  swimds: 1
-				  }
-			  ];
-		  },
-		  parse: function(swimdss) {
-			  for(var i = 0; i<swimdss.length; i++) {
-				  var swimds = swimdss[i];
-				  _filters[swimds.name] = {
-					  term: {
-						  swimds: swimds.swimds
-					  }
-				  }
-			  }
-		  }
-	   }
-	};
-
-	var _params = {};
+	var _params = [];
 	var _expression = "";
 
 	this.QueryParams = function(params, expression) {
@@ -215,31 +54,55 @@ function Filter() {
 		_expression = expression;
 	};
 
+	function parseData(type,value){
+		switch(type){
+		  	case "date":
+				//_filters["range"] = {"timestamp":{"gte":value.start,"lte":value.end}};
+			    	//_filters.filter.push(filter.MinMax("timestamp", value.start, value.end));
+				_filters.bool.must.push({range:{"timestamp":{"gte":value.start,"lte":value.end}}});
+			    	break;
+			case "polygon":
+				/*_filters["filters"] = {
+					geo_polygon : {
+						location:{
+							points:value.points							
+						}
+					}
+				};*/
+
+				
+				_filters.bool.must.push({
+					geo_polygon : {
+						location:{
+							points:value.points							
+						}
+					}
+				});		
+						
+				break;
+			
+  		}
+	}
+
 	this.Parse = function() {
-		for(var pkey in _params) {
-		  var type = _types[pkey];
-		  if(type != null) {
-				if(type.is(_params[pkey])) {
-				  type.parse(_params[pkey]);
-				}
-		  }
-		}
+		for (var type in _params) {
+			parseData(type,_params[type]);
+		} 
 	};
 
 	this.ElasticsearchQuery = function() {
-		return filter_expression(_expression.replace(/AND/g, "*").replace(/OR/g, "+").replace(/ /g, ""), _filters);
+		return _filters;
 	}
 }
 
 exports.middleware = function(req, res, next) {
-  if(req.body["filters"] != null && req.body["expression"] != null) {
+  if(req.body["filters"] != null) {
     var filter = new Filter();
     filter.QueryParams(req.body.filters, req.body.expression);
     filter.Parse();
     req.filters = filter.ElasticsearchQuery();
 		console.log(JSON.stringify(req.filters, null, 2));
 		console.log(JSON.stringify(req.body.filters, null, 2));
-		console.log(req.body.expression);
 		console.log(req.originalUrl);
   }
   next();

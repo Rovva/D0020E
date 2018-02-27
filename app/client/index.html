@@ -35,19 +35,19 @@
 
                 <div id="side-nav-big">
                     <div id="filter-container"></div>
-                    <!-- I do not know if this div is needed or not: --!>
-                    <div id="logic-container"></div>
+                    <!-- I do not know if this div is needed or not:
+                    <div id="logic-container"></div> -->
                 </div>
                 
                 <div id="side-nav-10">
-                <!-- Added a graphbutton for testing --!>
-                    <button id="new_filter_button" onclick="submit('linearGraph')" class="clearButton btn btn-md btn-block btn-primary">New Graph</button>
+                <!-- Added a graphbutton for testing -->
+                    <button id="new_filter_button" onclick="openModal('graph_modal')" class="clearButton btn btn-md btn-block btn-primary">New Graph</button>
                     <!-- Code for the three graphbuttons
                     <ul>
                         <li><div id="submit1" class="submitButton" onclick="submit('pie')" style="background-image: url('../assets/media/pie.png');"></div></li>
                         <li><div class="submitButton" onclick="submit('histogram')" style="background-image: url('../assets/media/bar.png');"></div></li>
 			             <li><div class="submitButton" onclick="submit('linearGraph')" style="background-image: url('../assets/media/linearGraph.png');"></div></li>
-                    </ul> --!>
+                    </ul> -->
                     
                 </div>
                 
@@ -77,9 +77,9 @@
 
         <!-- The Modal -->
         
-       <!-- ################################################################################# --!>
-       <!-- We need to add html and JS code below to show more options after selecting time   --!>
-       <!-- ################################################################################# --!>
+       <!-- ################################################################################# -->
+       <!-- We need to add html and JS code below to show more options after selecting time   -->
+       <!-- ################################################################################# -->
 
         <div id="filter_modal" class="modal">
 
@@ -119,6 +119,33 @@
             </div>
 
         </div>
+
+	<div id="graph_modal" class="modal">
+		<div id = "graph_modal_content" class="modal-content">
+                	<span class = "close" id="close_modal_button" onclick="closeModal('graph_modal')">&times;</span>
+			<p> 
+				From: <input type="date" id="from_date" value="2017-01-01">
+				To: <input type="date" id="to_date">
+			</p>
+
+			<p>       
+				From: <input type="time" id="from_time" value = "00:00:00">
+				To: <input type="time" id="to_time" value="00:00:00">
+			</p>
+
+			<p><button class="create_filter_button" onclick='submit("linearGraph")'>Create</button></p>
+			
+		</div>
+	
+
+	</div>
+
+
+	
+
+
+
+
     <!-- WORK IN PROGRESS. Ability to update filters upon clicking on them.
             See also main.js line 413 and update_filter.js -->
 
@@ -154,6 +181,7 @@
         <script type="text/javascript" src="app/modal/update_filter.js"></script>
         <script type="text/javascript" src="app/modal/modal_contents_filter.js"></script>
         <script type="text/javascript" src="app/modal/modal_contents_time.js"></script>
+	
 
         <!-- Javascript includes -->
         <!--D3.JS-->

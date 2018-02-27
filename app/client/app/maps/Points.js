@@ -46,8 +46,7 @@ function VisiblePoints(map, filterObj) {
 
 
         if(filterObj == null) {
-            this.pointsArray = {
-                "filters": {
+            this.pointsArray = [{
                     "polygon": [
                         {
                             "name": "sdad",
@@ -71,9 +70,7 @@ function VisiblePoints(map, filterObj) {
                             ]
                         }
                     ]
-                },
-                expression: "sdad"
-            };
+            }];
         } else {
             this.pointsArray = filterObj;
         }

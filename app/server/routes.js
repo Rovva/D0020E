@@ -163,21 +163,13 @@ router.post("/swimds", function(req, res) {
 });
 
 router.post("/air_temperature", function(req, res) {
-	console.log("air_temperature körs");
-	/*
-	filters = {
-		range:{
-			timestamp:{
-				gte:"2018-01-01T16:07:15Z",
-				lte:"2018-02-01T16:07:28Z"
-			}		
-		}
-	}
-	*/
+	console.log(req);
+	console.log("air_temperature filters:" + JSON.stringify(req.filters));
+	var dataType = req.body.filters.dataType;
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
 		query.body.aggregations = {
-			air_temp : { terms : { field: "air_temperature" } ,
+			air_temp : { terms : { field: dataType } ,
 			
 				aggs:{date:{terms:{ field: "timestamp" }}}
 			}

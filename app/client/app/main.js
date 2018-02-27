@@ -101,6 +101,7 @@ function initMap() {
 
         savedFilters.push({
             type: marker.type,
+			dataType:"air_temperature",//get value from select...
             id: id,
             name: id,
             marker: marker
@@ -169,19 +170,8 @@ function deleteFilter(isFilter,i) {
 Takes the global var savedFilters and takes all the saved filters in it and sets different lon/lats depending on if the filter is a polygon, rectangle or circle.
 Also seems to hard code data values such as snow, wet, ice, moist etc (?)
 */
-function convertFilter () {
-    var returnFilters = {
-        date: [],
-        point: [],
-        polygon: [],
-        signal: [],
-        road_temperature: [],
-        friction: [],
-        air_temperature: [],
-        air_humidity: [],
-        swimds: []
-    };
-
+function convertFilter (startTime,endTime) {
+    var returnFilters = {filters:[]};
 
     savedFilters.forEach( function (filter) {
         var type = filter.type;
@@ -195,9 +185,15 @@ function convertFilter () {
                     });
                 });
 
-                returnFilters["polygon"].push({
+                returnFilters.filters.push({
                     name: filter.name,
-                    points: pointsToOutput
+					date:{
+						start:startTime,
+						end: endTime					
+					},
+					dataType:filter.dataType,
+		    polygon:{points: pointsToOutput}	
+                    
                 });
                 break;
             }
@@ -209,30 +205,37 @@ function convertFilter () {
                 var nw = new google.maps.LatLng(ne.lat(), sw.lng());
                 var se = new google.maps.LatLng(sw.lat(), ne.lng());
 
-                returnFilters["polygon"].push({
+                returnFilters.filters.push({
                     name: filter.name,
-                    points: [
-                        {
-                            lon: nw.lng(),
-                            lat: nw.lat()
-                        },
+			date:{
+				start:startTime,
+				end: endTime					
+			},
+			dataType:filter.dataType,
+			polygon:{
+		            points: [
+		                {
+		                    lon: nw.lng(),
+		                    lat: nw.lat()
+		                },
 
-                        {
-                            lon: ne.lng(),
-                            lat: ne.lat()
-                        },
+		                {
+		                    lon: ne.lng(),
+		                    lat: ne.lat()
+		                },
 
-                        {
-                            lon: se.lng(),
-                            lat: se.lat()
-                        },
+		                {
+		                    lon: se.lng(),
+		                    lat: se.lat()
+		                },
 
-                        {
-                            lon: sw.lng(),
-                            lat: sw.lat()
-                        }
+		                {
+		                    lon: sw.lng(),
+		                    lat: sw.lat()
+		                }
 
-                    ]
+		            ]
+			}
                 });
 
 
@@ -241,19 +244,26 @@ function convertFilter () {
             }
 
             case "circle": {
-                returnFilters["point"].push({
+                returnFilters.filters.push({
                     name: filter.name,
-                    radius: filter.marker.overlay.radius,
-                    point: {
-                        lon: filter.marker.overlay.center.lng(),
-                        lat: filter.marker.overlay.center.lat()
-                    }
+					date:{
+						start:startTime,
+						end: endTime					
+					},
+					dataType:filter.dataType,
+		    circle:{
+		            radius: filter.marker.overlay.radius,
+		            point: {
+		                lon: filter.marker.overlay.center.lng(),
+		                lat: filter.marker.overlay.center.lat()
+		            }
+		    }
                 });
                 break;
             }
 
             default: {
-                returnFilters[filter.type].push(filter);
+                returnFilters.filters.push(filter);
             }
         }
 
@@ -283,38 +293,36 @@ function convertFilter () {
         }
     }
 
-    returnFilters = {
-        filters: returnFilters,
-        expression: exportLogic
-    };
 
     return returnFilters;
 }
 
-//Requests to display a chart, currently hard coded to only display SWIMDS - change to handle more request types
 function submit (graph) {
-    var filters = convertFilter();
+	var fromDate = document.getElementById("from_date").value;
+	var fromTime = document.getElementById("from_time").value;
+	var toDate = document.getElementById("to_date").value;
+	var toTime = document.getElementById("to_time").value;
 
-    console.log("Filters: " + JSON.stringify(filters));
-    /*
-    console.log("@@@@@ " + Object.keys(filters.filters));
-    console.log("@@@@@ " + Object.values(filters.filters));
-    console.log("@@@@@ " + Object.keys(filters.filters.swimds));
-    console.log("@@@@@ " + Object.values(filters.filters.swimds));
-    console.log(Object.values(filters.filters.swimds)[0].name); //Example for retrieving the data from the filter
-    console.log(Object.values(filters.filters.swimds)[1].swimds); //Example for retrieving the data from the filter
-    console.log("@@@@@@@@@ " + Object.keys(filters.filters)[1]);   //Example for getting the filter type	
-    console.log("@@@@@@@@@ " + Object.values(filters.expression)); //Example for getting all the chars in the logic expression
-    */
+	var start = fromDate+"T"+fromTime+"Z";
+	var end = toDate+"T"+toTime+"Z";
 
 
-	var api = new Api();
-	api.request("air_temperature",filters,{
-		onData: function(data) {
-		    console.log(JSON.stringify(data));
-		    drawChart(graph,data);
-		}
-	    });
+	var filters = convertFilter(start,end);
+
+
+   	console.log(JSON.stringify(filters));
+	for(var i = 0; i < filters.filters.length;i++){
+		
+		var api = new Api();
+		api.request("air_temperature",{"filters":filters.filters[i]},{
+			onData: function(data) {
+			    console.log(JSON.stringify(data));
+			    drawChart(graph,data);
+			}
+		});
+	}
+	
+	//drawChart...
 }
 
 /*
@@ -374,47 +382,31 @@ function loadFilters () {
         element.appendChild(icon);
         element.appendChild(document.createTextNode(filter.name));
         element.appendChild(closeButton);
+	element.appendChild(document.createElement("BR")); 
+	var dropdown = document.createElement("select");
+	var options = [
+			{value:"air_temperature",text:"Air temp."},
+			{value:"road_temperature",text:"Road temp."},
+			{value:"air_humidity",text:"Air Humidity"}
+	];
+
+	for(var i = 0; i<options.length;i++){
+		var option = document.createElement("option");
+		option.value = options[i].value;
+		option.text = options[i].text;
+		dropdown.appendChild(option);	
+	}
+	
+
+	dropdown.onchange = function(){
+		var id = this.parentElement.id;
+		savedFilters[id].dataType = this.value;
+	};
+	element.appendChild(dropdown);
+	
         document.getElementById('filter-container').appendChild(element);
 
         element.id = elementCounter;    //this is the index in the list
-        elementCounter++;
-    });
-
-    updateLogic();
-
-    elementCounter = 0;
-    document.getElementById('logic-container').innerHTML = '';
-    savedLogic.forEach (function (logic) {
-        var logicElement = document.createElement("div");
-        var logicIcon = document.createElement("img");
-        var textField = document.createElement("input");
-        textField.value = logic.string;
-        textField.id = logic.id;
-        //document.getElementsByName('textField')[0].placeholder='New Logic Name';
-
-        /* Placeholdern ovan fungerar ej, ska testas */
-
-        if(selectedLogic == logic.id) {
-            logicIcon.src = "../assets/media/logic_green.png";
-        } else {
-            logicIcon.src = "../assets/media/logic.png";
-        }
-
-        logicIcon.addEventListener('click', function (e) {
-            selectLogic(logic.id);
-        });
-        logicIcon.id = "icon_" + logic.id;
-
-        /*var closeButton = document.createElement("button");
-        closeButton.value = elementCounter;
-        closeButton.onclick = function() {
-            deleteFilter(false,this.value);
-        };*/
-
-        logicElement.appendChild(logicIcon);
-        logicElement.appendChild(textField);
-        //logicElement.appendChild(closeButton);
-        document.getElementById('logic-container').appendChild(logicElement);
         elementCounter++;
     });
 }
