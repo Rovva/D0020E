@@ -1,0 +1,103 @@
+<ns0:d2LogicalModel xmlns:ns0="http://datex2.eu/schema/2/2_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" modelBaseVersion="2" extensionName="Swedish extensions" extensionVersion="1">
+<ns0:exchange>...</ns0:exchange>
+<ns0:payloadPublication lang="sv" xsi:type="ns0:MeasurementSiteTablePublication">
+<ns0:feedType>WEATHERMEASUREMETADATA</ns0:feedType>
+<ns0:publicationTime>2018-02-27T12:00:18</ns0:publicationTime>
+<ns0:publicationCreator>
+<ns0:country>se</ns0:country>
+<ns0:nationalIdentifier>STA</ns0:nationalIdentifier>
+</ns0:publicationCreator>
+<ns0:headerInformation>
+<ns0:confidentiality>noRestriction</ns0:confidentiality>
+<ns0:informationStatus>real</ns0:informationStatus>
+</ns0:headerInformation>
+<ns0:measurementSiteTable id="SE_STA_VVIS_Measurementspoints" version="1">
+<ns0:measurementSiteRecord id="SE_STA_VVIS202" version="1">
+<ns0:measurementSiteName>...</ns0:measurementSiteName>
+<ns0:measurementSpecificCharacteristics index="1">...</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="2">...</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="3">...</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="4">...</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="7">...</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSiteLocation xsi:type="ns0:Point">
+<ns0:locationForDisplay>
+<ns0:latitude>59.0530891418457</ns0:latitude>
+<ns0:longitude>17.447080612182617</ns0:longitude>
+</ns0:locationForDisplay>
+<ns0:locationExtension>
+<ns0:locationExtension>
+<ns0:roadNumber>57</ns0:roadNumber>
+<ns0:countyNumber>2</ns0:countyNumber>
+</ns0:locationExtension>
+</ns0:locationExtension>
+<ns0:pointByCoordinates>
+<ns0:pointCoordinates>
+<ns0:latitude>59.0530891418457</ns0:latitude>
+<ns0:longitude>17.447080612182617</ns0:longitude>
+</ns0:pointCoordinates>
+</ns0:pointByCoordinates>
+</ns0:measurementSiteLocation>
+</ns0:measurementSiteRecord>
+<ns0:measurementSiteRecord id="SE_STA_VVIS203" version="1">
+<ns0:measurementSiteName>
+<ns0:values>
+<ns0:value lang="sv">Södertälje</ns0:value>
+</ns0:values>
+</ns0:measurementSiteName>
+<ns0:measurementSpecificCharacteristics index="1">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>temperatureInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="4">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>humidityInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="7">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>roadSurfaceConditionInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="8">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>windInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="9">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>windInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="10">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>windInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSpecificCharacteristics index="11">
+<ns0:measurementSpecificCharacteristics>
+<ns0:specificMeasurementValueType>windInformation</ns0:specificMeasurementValueType>
+</ns0:measurementSpecificCharacteristics>
+</ns0:measurementSpecificCharacteristics>
+<ns0:measurementSiteLocation xsi:type="ns0:Point">
+<ns0:locationForDisplay>
+<ns0:latitude>59.184490203857422</ns0:latitude>
+<ns0:longitude>17.642570495605469</ns0:longitude>
+</ns0:locationForDisplay>
+<ns0:locationExtension>
+<ns0:locationExtension>
+<ns0:roadNumber>4</ns0:roadNumber>
+<ns0:countyNumber>2</ns0:countyNumber>
+</ns0:locationExtension>
+</ns0:locationExtension>
+<ns0:pointByCoordinates>
+<ns0:pointCoordinates>
+<ns0:latitude>59.184490203857422</ns0:latitude>
+<ns0:longitude>17.642570495605469</ns0:longitude>
+</ns0:pointCoordinates>
+</ns0:pointByCoordinates>
+</ns0:measurementSiteLocation>
+</ns0:measurementSiteRecord>
+</ns0:measurementSiteTable>
+</ns0:payloadPublication>
+</ns0:d2LogicalModel>

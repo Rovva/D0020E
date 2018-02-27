@@ -1,0 +1,175 @@
+<d2LogicalModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://datex2.eu/schema/2/2_0" modelBaseVersion="2">
+<exchange>
+<supplierIdentification>
+<country>se</country>
+<nationalIdentifier>STA</nationalIdentifier>
+</supplierIdentification>
+</exchange>
+<payloadPublication xsi:type="MeasuredDataPublication" lang="sv">
+<feedType>WEATHERMEASUREDATA2</feedType>
+<publicationTime>2018-02-27T14:45:01.9410338+01:00</publicationTime>
+<publicationCreator>
+<country>se</country>
+<nationalIdentifier>STA</nationalIdentifier>
+</publicationCreator>
+<measurementSiteTableReference id="SE_STA_VVIS_Measurementspoints" version="0" targetClass="MeasurementSiteTable"/>
+<headerInformation>
+<confidentiality>noRestriction</confidentiality>
+<informationStatus>real</informationStatus>
+</headerInformation>
+<siteMeasurements>
+<measurementSiteReference id="SE_STA_VVIS2236101" version="0" targetClass="MeasurementSiteRecord"/>
+<measurementTimeDefault>2018-02-27T14:40:47+01:00</measurementTimeDefault>
+<measuredValue index="1">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>noDataValuesAvailable</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="2">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>spuriousUnreliableDataValues</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="3">
+<measuredValue>
+<basicData xsi:type="TemperatureInformation">
+<temperature>
+<airTemperature>
+<temperature>-15.3</temperature>
+</airTemperature>
+</temperature>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="4">
+<measuredValue>
+<basicData xsi:type="RoadSurfaceConditionInformation">
+<roadSurfaceConditionMeasurements>
+<roadSurfaceTemperature>
+<temperature>-37.6</temperature>
+</roadSurfaceTemperature>
+</roadSurfaceConditionMeasurements>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="5">
+<measuredValue>
+<basicData xsi:type="PrecipitationInformation">
+<noPrecipitation>true</noPrecipitation>
+<precipitationDetail/>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="6">
+<measuredValue>
+<basicData xsi:type="PrecipitationInformation">
+<noPrecipitation>true</noPrecipitation>
+<precipitationDetail/>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="7">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>noDataValuesAvailable</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="8">
+<measuredValue>
+<basicData xsi:type="HumidityInformation">
+<humidity>
+<relativeHumidity>
+<percentage>63.1</percentage>
+</relativeHumidity>
+</humidity>
+</basicData>
+</measuredValue>
+</measuredValue>
+</siteMeasurements>
+<siteMeasurements>
+<measurementSiteReference id="SE_STA_VVIS2405100" version="0" targetClass="MeasurementSiteRecord"/>
+<measurementTimeDefault>2018-02-27T14:40:00+01:00</measurementTimeDefault>
+<measuredValue index="1">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>noDataValuesAvailable</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="2">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>spuriousUnreliableDataValues</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="3">
+<measuredValue>
+<basicData xsi:type="TemperatureInformation">
+<temperature>
+<airTemperature>
+<temperature>-12.1</temperature>
+</airTemperature>
+</temperature>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="4">
+<measuredValue>
+<basicData xsi:type="RoadSurfaceConditionInformation">
+<roadSurfaceConditionMeasurements>
+<roadSurfaceTemperature>
+<temperature>-12.9</temperature>
+</roadSurfaceTemperature>
+</roadSurfaceConditionMeasurements>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="5">
+<measuredValue>
+<basicData xsi:type="PrecipitationInformation">
+<noPrecipitation>true</noPrecipitation>
+<precipitationDetail/>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="6">
+<measuredValue>
+<basicData xsi:type="PrecipitationInformation">
+<noPrecipitation>true</noPrecipitation>
+<precipitationDetail/>
+</basicData>
+</measuredValue>
+</measuredValue>
+<measuredValue index="7">
+<measuredValue>
+<measurementEquipmentFault>
+<faultLastUpdateTime>2018-02-27T14:45:01.9566592+01:00</faultLastUpdateTime>
+<measurementEquipmentFault>noDataValuesAvailable</measurementEquipmentFault>
+</measurementEquipmentFault>
+</measuredValue>
+</measuredValue>
+<measuredValue index="8">
+<measuredValue>
+<basicData xsi:type="HumidityInformation">
+<humidity>
+<relativeHumidity>
+<percentage>66.4</percentage>
+</relativeHumidity>
+</humidity>
+</basicData>
+</measuredValue>
+</measuredValue>
+</siteMeasurements>
+</payloadPublication>
+</d2LogicalModel>
