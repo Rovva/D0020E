@@ -62,8 +62,16 @@ public class ConvertStationXML {
 		}
 	}
 	
-	public void saveDataToFile() {
-		
+	public void saveData() {
+		try (PrintWriter out = new PrintWriter("temp_stations.txt")) {
+			for(int i = 0; i < stations.size(); i++) {
+				    out.println(stations.get(i) + " " + latitude.get(i) + " " + longitude.get(i));
+			}
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

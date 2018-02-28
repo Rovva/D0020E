@@ -9,9 +9,11 @@ public class Run {
 	public static void main(String[] args) {
 		//fetch.fetchStations();
 		//stations.ConvertStation();
+		//stations.saveData();
 		//stations.printData();
 		weather.ConvertStation();
-		weather.printData();
+		weather.saveData();
+		//weather.printData();
 	}
 
 }

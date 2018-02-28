@@ -101,4 +101,16 @@ public class ConvertWeatherXML {
 			  + " Road: " + roadTemperature.get(i) + " Humidity: " + humidities.get(i));
 		}
 	}
+
+	public void saveData() {
+		try (PrintWriter out = new PrintWriter("temp_weather.txt")) {
+			for(int i = 0; i < stations.size(); i++) {
+				    out.println(stations.get(i) + " " + airTemperature.get(i) + " " + roadTemperature.get(i) + " " + humidities.get(i));
+			}
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
