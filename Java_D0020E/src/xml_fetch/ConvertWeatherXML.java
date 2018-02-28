@@ -105,7 +105,7 @@ public class ConvertWeatherXML {
 	public void saveData() {
 		try (PrintWriter out = new PrintWriter("temp_weather.txt")) {
 			for(int i = 0; i < stations.size(); i++) {
-				    out.println(stations.get(i) + " " + airTemperature.get(i) + " " + roadTemperature.get(i) + " " + humidities.get(i));
+				    out.println(stations.get(i) + " " + dates.get(i) + " " + airTemperature.get(i) + " " + roadTemperature.get(i) + " " + humidities.get(i));
 			}
 			out.close();
 		} catch (FileNotFoundException e) {
