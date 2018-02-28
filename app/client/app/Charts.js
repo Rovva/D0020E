@@ -56,81 +56,115 @@ function drawChart(type,data) {
             drawLinearGraph(data);
             break;
         }
+
     }
 }
 
-/*
-Uses D3JS to create a chart instead of Plotly.js.
-*/
+function drawTest(data){
+	
+}
+
 
 function drawLinearGraph(data){
-// set the dimensions and margins of the graph
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 600 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
+	var margin = {
+	    top: 20,
+	    right: 20,
+	    bottom: 30,
+	    left: 40
+	},
+	width = 450 - margin.left - margin.right,
+	    height = 500 - margin.top - margin.bottom;
 
-// parse the date / time
-var parseTime = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
+	var parseDate = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ");
 
-// set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
+	var x = d3.scaleTime().range([0, width]);
 
+	var y = d3.scaleLinear().range([height, 0]);
 
+	var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-// define the line
-var valueline = d3.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.key); });
+	var xAxis = d3.axisBottom(x);
+	var yAxis = d3.axisLeft(y);
 
-// append the svg obgect to the body of the page
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-var svg = d3.select("#graphs_container").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-	.append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+	var line = d3.line()
+	    
+	    .x(function (d) {
+	    return x(d.date);
+	})
+	    .y(function (d) {
+	    return y(d.key);
+	});
 
-  // format the data
-  data.forEach(function(d) {
-      d.date = parseTime(d.date);
-  });
+	var svg = d3.select("#graphs_container").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	    .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+	color.domain(data.map(function (d) { return d.name; }));
 
-
-  // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.key; })]);			//todo: add scale from d3.min....
-
-
-  // Add the valueline path.
-  svg.append("path")
-      .data([data])
-      .attr("class", "line")
-      .attr("d", valueline);
-
-  // Add the X Axis
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-  // Add the Y Axis
-  svg.append("g")
-      .call(d3.axisLeft(y));
-
-//console.log(data[0]); (Remember to comment out this line after testing, breaks other graphs...)
+	data.forEach(function (kv) {
+	    kv.Data.forEach(function (d) {
+		d.date = parseDate(d.date);
+	    });
+	});
 
 
- 
+
+	var minX = d3.min(data, function (v) { return d3.min(v.Data, function (d) { return d.date; }) });
+	var maxX = d3.max(data, function (v) { return d3.max(v.Data, function (d) { return d.date; }) });
+	var minY = d3.min(data, function (v) { return d3.min(v.Data, function (d) { return d.key; }) });
+	var maxY = d3.max(data, function (v) { return d3.max(v.Data, function (d) { return d.key; }) });
+
+	x.domain([minX, maxX]);
+	y.domain([minY, maxY]);
+
+	svg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + height + ")")
+	    .call(xAxis);
+
+	svg.append("g")
+	    .attr("class", "y axis")
+	    .call(yAxis)
 
 
- var btn = document.getElementById("graphsButton");
-    $(btn).toggleClass("graphs-button-open",true);
-    $("#graphs_div").toggleClass("graphs-div-open",true);
-    //document.getElementById('graphs_container').appendChild(svg);
-    window.scrollTo(0, document.getElementById("graphs_container").getBoundingClientRect().bottom);
+	var dat = svg.selectAll(".asd")
+	    .data(data)
+	    .enter().append("g")
+	    .attr("class", "asd");
+
+	dat.append("path")
+	    .attr("class", "line")
+	    .attr("d", function (d) {
+	    return line(d.Data);
+	})
+	    .style("stroke", function (d) {
+	    return color(d.name);
+	});
+
+	dat.append("text")
+	    .datum(function (d) {
+	    return {
+		name: d.name,
+		date: d.Data[d.Data.length - 1].date,
+		key: d.Data[d.Data.length - 1].key
+	    };
+	})
+	    .attr("transform", function (d) {
+	    return "translate(" + x(d.date) + "," + y(d.key) + ")";
+	})
+	    .attr("x", 3)
+	    .attr("dy", ".35em")
+	    .text(function (d) {
+		return d.name;
+	});
+
+	var btn = document.getElementById("graphsButton");
+	$(btn).toggleClass("graphs-button-open",true);
+	$("#graphs_div").toggleClass("graphs-div-open",true);
+	//document.getElementById('graphs_container').appendChild(svg);
+	window.scrollTo(0, document.getElementById("graphs_container").getBoundingClientRect().bottom);
 }
 
 

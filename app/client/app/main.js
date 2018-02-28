@@ -306,23 +306,42 @@ function submit (graph) {
 	var start = fromDate+"T"+fromTime+"Z";
 	var end = toDate+"T"+toTime+"Z";
 
-
-	var filters = convertFilter(start,end);
-
-
-   	console.log(JSON.stringify(filters));
-	for(var i = 0; i < filters.filters.length;i++){
-		
-		var api = new Api();
-		api.request("air_temperature",{"filters":filters.filters[i]},{
-			onData: function(data) {
-			    console.log(JSON.stringify(data));
-			    drawChart(graph,data);
-			}
-		});
-	}
 	
-	//drawChart...
+	var filters = convertFilter(start,end);
+   	console.log(JSON.stringify(filters));
+
+	
+	var makeGraph = function (callback){
+		var graphData = [];
+		var counter = 0;
+		for(var i = 0; i < filters.filters.length;i++){		//use callback after loop finished?
+		
+			var api = new Api();
+			api.request("air_temperature",{"filters":filters.filters[i]},{
+				onData: function(data) {
+					console.log(JSON.stringify(data));
+					graphData.push(data);
+					counter++;
+					if(counter == filters.filters.length){
+						callback(graphData);
+					}
+			    
+				}
+			});
+		}
+		
+		
+	}
+
+	var counter = 0;
+	var cb = function(data){
+		
+		drawChart(graph,data);
+
+	}
+	makeGraph(cb);
+	
+
 }
 
 /*

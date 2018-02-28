@@ -185,9 +185,21 @@ router.post("/air_temperature", function(req, res) {
 			for(var i = 0; i < temp.buckets.length;i++){
 				data.push({key:temp.buckets[i].key, date:temp.buckets[i].date.buckets[0].key_as_string});
 			}
-			obj.data = data.sort(function(a,b){
+			/*obj.data = data.sort(function(a,b){
 				return new Date(b.date) - new Date(a.date);
-			}); 
+			});*/
+			
+				
+			
+		
+			data.sort(function(a,b){
+				return new Date(a.date) - new Date(b.date);
+			});
+			obj.data = {name:req.body.filters.name,Data:data};
+			
+
+		
+
 
 
 			console.log("data i routes:" + JSON.stringify(obj.data));		
@@ -195,64 +207,5 @@ router.post("/air_temperature", function(req, res) {
 		res.json(obj);
 	});
 });
-
-router.post("/road_temperature", function(req, res) {
-	console.log("road_temperature körs");
-
-	var query = new Query(req.db.elasticsearch, req.filters);
-	query.set(function(query) {
-		query.body.aggregations = {
-			road_temp : { terms : { field: "road_temperature" } }
-		};
-		return query;
-	});
-
-	query.query(function(resp, obj, err) {
-		if(err == null)
-			obj.data = resp.aggregations.road_temp.buckets;
-
-		res.json(obj);
-	});
-});
-
-router.post("/air_humidity", function(req, res) {
-	console.log("air humidity körs");
-
-	var query = new Query(req.db.elasticsearch, req.filters);
-	query.set(function(query) {
-		query.body.aggregations = {
-			air_hum : { terms : { field: "air_humidity" } }
-		};
-		return query;
-	});
-
-	query.query(function(resp, obj, err) {
-		if(err == null)
-			obj.data = resp.aggregations.air_hum.buckets;
-
-		res.json(obj);
-	});
-});
-
-
-router.post("/friction", function(req, res) {
-	console.log("friction körs");
-
-	var query = new Query(req.db.elasticsearch, req.filters);
-	query.set(function(query) {
-		query.body.aggregations = {
-			fric : { terms : { field: "friction" } }
-		};
-		return query;
-	});
-
-	query.query(function(resp, obj, err) {
-		if(err == null)
-			obj.data = resp.aggregations.fric.buckets;
-
-		res.json(obj);
-	});
-});
-
 
 module.exports = router;
