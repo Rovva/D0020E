@@ -1,11 +1,11 @@
 // Klart
 Hämta hem båda xml filerna
 
-// Nästan klart
+// Klart
 Ta ut latitude och longitude sorterat efter "id" och spara i en lokal fil temporärt med formatet:
   Stationsid Latitud Longitud
 
-// Nästan klart
+// Klart (Måste fixa så ifall någon av index 3,4 eller 8 är null så hoppa över den stationen // klart)
 Ta ut värden från xml filen som är sorterat efter "id" och spara i en lokal fil temporärt med formatet:
   Stationsid Datum index="3" index="4" index="8" (index 3 är air temp, 4 är road temp, 8 är humidity)
 

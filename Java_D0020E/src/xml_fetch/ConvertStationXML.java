@@ -10,7 +10,7 @@ import java.io.*;
 
 public class ConvertStationXML {
 
-	String stationXML = "test_station_cache.xml";
+	String stationXML = "station_cache.xml";
 	
 	ArrayList<String> stations = new ArrayList<String>();
 	ArrayList<Float> latitude = new ArrayList<Float>();

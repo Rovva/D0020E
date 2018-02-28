@@ -11,7 +11,7 @@ import java.io.*;
 
 public class ConvertWeatherXML {
 
-	String weatherXML = "test_weather_cache.xml";
+	String weatherXML = "weather_cache.xml";
 	
 	ArrayList<String> stations = new ArrayList<String>();
 	ArrayList<String> dates = new ArrayList<String>();
@@ -32,25 +32,85 @@ public class ConvertWeatherXML {
 			Document doc = builder.parse(weatherXML);
 			
 			NodeList weatherList = doc.getElementsByTagName("siteMeasurements");
-
+			
+			String id = "";
+			String date = "";
+			float airtemp = 0;
+			float roadtemp = 0;
+			float humid = 0;
+			
+			boolean for_id = true;
+			boolean for_date = true;
+			boolean for_airtemp = true;
+			boolean for_roadtemp = true;
+			boolean for_hum = true;
 			for(int i = 0; i < weatherList.getLength(); i++) {
 				
 				Node list = weatherList.item(i);
 				
 				if (list.getNodeType()==Node.ELEMENT_NODE) {
 					
-					String id = list.getChildNodes().item(1).getAttributes().getNamedItem("id").getTextContent();
-					String date = list.getChildNodes().item(3).getTextContent();
+					// I seriously hate XML, if someone can figure out a better way, please improve!
+					try {
+						id = list.getChildNodes().item(0).getAttributes().getNamedItem("id").getTextContent();
+						for_id = true;
+					} catch(Exception e) {
+						for_id = false;
+					}
+
+					try {
+						date = list.getChildNodes().item(1).getTextContent();
+						for_date = true;
+					} catch(Exception e) {
+						for_date = false;
+					}
+
+					try {
+						airtemp = Float.parseFloat(list.getChildNodes().item(4).getChildNodes().item(0).getChildNodes().item(0).getChildNodes()
+								    .item(0).getChildNodes().item(0).getChildNodes().item(0).getTextContent());
+						for_airtemp = true;
+					} catch(Exception e) {
+						for_airtemp = false;
+					}
+
+					try {
+						roadtemp = Float.parseFloat(list.getChildNodes().item(5).getChildNodes().item(0).getChildNodes().item(0).getChildNodes()
+								     .item(0).getChildNodes().item(0).getChildNodes().item(0).getTextContent());
+						for_roadtemp = true;
+					} catch(Exception e) {
+						for_roadtemp = false;
+					}
 					
+					try {
+						humid = Float.parseFloat(list.getChildNodes().item(9).getChildNodes().item(0).getChildNodes().item(0).getChildNodes()
+								    .item(0).getChildNodes().item(0).getChildNodes().item(0).getTextContent());
+						for_hum = true;
+					} catch(Exception e) {
+						for_hum = false;
+					}
+					if(for_id && for_date && for_airtemp && for_roadtemp && for_hum) {
+						stations.add(id);
+						dates.add(date);
+						airTemperature.add(airtemp);
+						roadTemperature.add(roadtemp);
+						humidities.add(humid);
+					}
+					
+					/*
+					try {
+						System.out.println(Float.parseFloat(list.getChildNodes().item(19).getChildNodes().item(1).getChildNodes().item(1).getChildNodes().item(1).getTextContent()));
+					} catch(Exception e) {
+						for_hum = true;
+					}
+					*/
+					//String id = list.getChildNodes().item(1).getAttributes().getNamedItem("id").getTextContent();
+					//String date = list.getChildNodes().item(3).getTextContent();
+					
+					/*
 					float airTemp = Float.parseFloat(list.getChildNodes().item(9).getChildNodes().item(1).getChildNodes().item(1).getChildNodes().item(1).getTextContent());
 					float roadTemp = Float.parseFloat(list.getChildNodes().item(11).getChildNodes().item(1).getChildNodes().item(1).getChildNodes().item(1).getTextContent());
 					float humidity = Float.parseFloat(list.getChildNodes().item(19).getChildNodes().item(1).getChildNodes().item(1).getChildNodes().item(1).getTextContent());
-					
-					stations.add(id);
-					dates.add(date);
-					airTemperature.add(airTemp);
-					roadTemperature.add(roadTemp);
-					humidities.add(humidity);
+					*/
 					
 					/* Some debugging prints
 					System.out.println(id);
@@ -61,8 +121,6 @@ public class ConvertWeatherXML {
 					System.out.println(humidity);
 					*/
 
-					// I seriously hate XML, if someone can figure out a better way, please improve!
-					
 					// This is to fetch station id:
 					// list.getChildNodes().item(1).getAttributes().getNamedItem("id").getTextContent()
 					

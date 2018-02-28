@@ -13,7 +13,7 @@ public class Run {
 		//stations.printData();
 		weather.ConvertStation();
 		weather.saveData();
-		//weather.printData();
+		weather.printData();
 	}
 
 }
