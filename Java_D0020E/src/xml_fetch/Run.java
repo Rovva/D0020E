@@ -11,6 +11,7 @@ public class Run {
 		//stations.ConvertStation();
 		//stations.printData();
 		weather.ConvertStation();
+		weather.printData();
 	}
 
 }
