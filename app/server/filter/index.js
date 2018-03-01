@@ -80,6 +80,18 @@ function Filter() {
 				});		
 						
 				break;
+
+			case "circle":
+				_filters.bool.must.push({
+					geo_distance : {
+					    distance : value.radius,
+					    location : {
+						lat : value.point.lat,
+						lon : value.point.lon
+					    }
+					}
+				});
+				break;
 			
   		}
 	}

@@ -163,8 +163,8 @@ router.post("/swimds", function(req, res) {
 });
 
 router.post("/air_temperature", function(req, res) {
-	console.log(req);
-	console.log("air_temperature filters:" + JSON.stringify(req.filters));
+	
+	console.log(JSON.stringify(req.filters,undefined,2));
 	var dataType = req.body.filters.dataType;
 	var query = new Query(req.db.elasticsearch, req.filters);
 	query.set(function(query) {
@@ -181,17 +181,12 @@ router.post("/air_temperature", function(req, res) {
 	query.query(function(resp, obj, err) {
 		if(err == null){
 			temp = resp.aggregations.air_temp;
+			console.log("unformated data:" + JSON.stringify(temp,undefined,2));
 			var data = [];
 			for(var i = 0; i < temp.buckets.length;i++){
 				data.push({key:temp.buckets[i].key, date:temp.buckets[i].date.buckets[0].key_as_string});
 			}
-			/*obj.data = data.sort(function(a,b){
-				return new Date(b.date) - new Date(a.date);
-			});*/
-			
-				
-			
-		
+
 			data.sort(function(a,b){
 				return new Date(a.date) - new Date(b.date);
 			});
@@ -202,7 +197,7 @@ router.post("/air_temperature", function(req, res) {
 
 
 
-			console.log("data i routes:" + JSON.stringify(obj.data));		
+			console.log("data i routes:" + JSON.stringify(obj.data,undefined,2));		
 		}
 		res.json(obj);
 	});

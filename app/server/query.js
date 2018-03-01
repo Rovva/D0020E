@@ -16,7 +16,6 @@ This function is called in routes.js several times
 */
 function Query(elaticsearch, filters) {
 
-	console.log("query filters:" + JSON.stringify(filters));
   var _elasticsearch = elaticsearch,
     _filters = filters,
     _default_query = {

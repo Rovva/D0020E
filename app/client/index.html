@@ -133,6 +133,26 @@
 				To: <input type="time" id="to_time" value="00:00:00">
 			</p>
 
+			<script>
+			    date = new Date();
+			    
+			    year = date.getFullYear();
+			    
+			    //need offset of 1 to display correct month
+			    month = date.getMonth() + 1;
+			    if (month < 10) {
+				month = "0" + month;
+			    }
+			    
+			    day = date.getDate();
+			    if (day < 10) {
+				day = "0" + day;
+			    }
+			    
+			    resultString = year + "-" + month + "-" + day;
+			    document.getElementById("to_date").value = resultString;
+			</script>				
+
 			<p><button class="create_filter_button" onclick='submit("linearGraph")'>Create</button></p>
 			
 		</div>
