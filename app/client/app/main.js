@@ -101,7 +101,7 @@ function initMap() {
 
         savedFilters.push({
             type: marker.type,
-			dataType:"air_temperature",//get value from select...
+			dataType:"air_temperature",//default value of select...
             id: id,
             name: id,
             marker: marker
@@ -112,16 +112,9 @@ function initMap() {
 
 }
 
-function newLogic () {
-    savedLogic.push({
-        "id": ("logic_" + savedLogic.length.toString()),
-        "string": "" // Lägg tillbaka "text..." om placeholder ej fungerar
-    });
-    loadFilters();
-    if(savedLogic.length == 1) {
-        selectLogic("logic_0");
-    }
-}
+
+
+
 
 /*
  * Clears all markers on the map.
@@ -141,11 +134,7 @@ function openModal(modalName) {
     modal.style.display = "block";
 }
 
-function clearLogic () {
-    savedLogic = [];
-    document.getElementById('logic-container').innerHTML = '';
-    selectedLogic = "";
-}
+
 
 function clearGraphs () {
     document.getElementById('graphs_container').innerHTML = '';
