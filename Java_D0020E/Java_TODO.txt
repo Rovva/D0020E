@@ -24,6 +24,7 @@ Format i den nya filen:
 
 Innan den nya filen sparas, kolla om den redan finns, om så är fallet, kopiera gamla filen och lägg till datum i filnamnet från första raden i gamla filen. De två temporära filerna samt XML filerna ska tas bort.
 
+// Klart
 När man går igenom värderna ovan, så måste measuredValue för index 3,4 samt 8 inte vara null eller ha measurementEquipmentFault. Om det inträffar ska den stationen hoppas över.
 
 Kolla om givet longitude och latitude samt datum redan finns i databasen och om inte, lagra värdena.

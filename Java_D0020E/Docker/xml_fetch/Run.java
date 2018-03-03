@@ -10,7 +10,6 @@ public class Run {
 	
 	public static void main(String[] args) {
 		//fetch.fetchStations();
-		//fetch.fetchWeather();
 		//stations.ConvertStation();
 		//stations.saveData();
 		//stations.printData();
@@ -22,7 +21,7 @@ public class Run {
 		//format.loadWeather();
 		//format.printWeather();
 		//format.combineData();
-		mysql.readData();
+		mysql.testMysql();
 	}
 
 }

@@ -1,22 +1,13 @@
 FROM ubuntu:16.04
 
-ARG elasticsearch_ip
-
 ENV DEBIAN_FRONTEND noninteractive
-ENV ELASTICSEARCH $elasticsearch_ip
+
 
 RUN apt-get update -q \
 	&& apt-get install -yq \
-		apt-utils \
-		curl
-
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get update -q && \
-	apt-get install -yq \
-		nodejs
+		openjdk-8-jre bash
 
 WORKDIR /opt/rcm-pull
-COPY . .
-RUN npm install
+COPY xml_fetch .
 
-CMD ["npm", "start"]
+CMD [/bin/bash]

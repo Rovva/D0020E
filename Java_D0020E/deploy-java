@@ -1,0 +1,10 @@
+#!/bin/bash
+# The deploy file for java-backend
+
+RCM_NET="rcm-network"
+
+#docker build --name rcm-java --net=$RCM_NET -d --link rcm-mysql:db rcm-java Docker/
+
+docker rm -f rcm-java
+docker build -t rcm-java Docker/
+docker run --net=$RCM_NET --link rcm-mysql:db --name rcm-java rcm-java
