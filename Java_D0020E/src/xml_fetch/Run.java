@@ -1,5 +1,7 @@
 package xml_fetch;
 
+import java.util.concurrent.TimeUnit;
+
 public class Run {
 
 	static FetchFiles fetch = new FetchFiles();
@@ -9,21 +11,25 @@ public class Run {
 	static SendToMysql mysql = new SendToMysql();
 	
 	public static void main(String[] args) {
-		fetch.fetchStations();
-		fetch.fetchWeather();
-		stations.ConvertStation();
-		stations.saveData();
-		//stations.printData();
-		weather.ConvertStation();
-		weather.saveData();
-		//weather.printData();
-		format.loadStations();
-		//format.printStations();
-		format.loadWeather();
-		//format.printWeather();
-		format.combineData();
-		mysql.readData();
-		mysql.insertToMysql();
+		while(true) {
+			fetch.fetchStations();
+			fetch.fetchWeather();
+			stations.ConvertStation();
+			stations.saveData();
+			//stations.printData();
+			weather.ConvertStation();
+			weather.saveData();
+			//weather.printData();
+			format.loadStations();
+			//format.printStations();
+			format.loadWeather();
+			//format.printWeather();
+			format.combineData();
+			mysql.readData();
+			mysql.insertToMysql();
+			TimeUnit.HOURS.sleep(6);
+		}
+		
 	}
 
 }
