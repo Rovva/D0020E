@@ -9,19 +9,21 @@ public class Run {
 	static SendToMysql mysql = new SendToMysql();
 	
 	public static void main(String[] args) {
-		//fetch.fetchStations();
-		//stations.ConvertStation();
-		//stations.saveData();
+		fetch.fetchStations();
+		fetch.fetchWeather();
+		stations.ConvertStation();
+		stations.saveData();
 		//stations.printData();
-		//weather.ConvertStation();
-		//weather.saveData();
+		weather.ConvertStation();
+		weather.saveData();
 		//weather.printData();
-		//format.loadStations();
+		format.loadStations();
 		//format.printStations();
-		//format.loadWeather();
+		format.loadWeather();
 		//format.printWeather();
-		//format.combineData();
-		mysql.testMysql();
+		format.combineData();
+		mysql.readData();
+		mysql.insertToMysql();
 	}
 
 }

@@ -71,7 +71,7 @@ public class FormatFiles {
 		try (PrintWriter out = new PrintWriter("combined_data.txt")) {
 			for(int i = 0; i < station_weather.size(); i++) {
 				coordinate_place = station_place.indexOf(station_weather.get(i));
-				line = station_weather.get(i) + " " + station_latitude.get(coordinate_place) + " " + 
+				line = station_weather.get(i) + " " + station_date.get(i) + " " + station_latitude.get(coordinate_place) + " " + 
 						station_longitude.get(coordinate_place) + " " + station_air.get(i) + " " + station_road.get(i)
 						 + " " + station_humid.get(i);
 				//System.out.println(line);

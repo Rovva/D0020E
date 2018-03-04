@@ -30,4 +30,8 @@ WORKDIR /opt/rcm-java
 
 COPY . .
 
+WORKDIR /opt/rcm-java/xml_fetch
+
+RUN javac -d build ./*
+
 CMD ["/sbin/my_init"]

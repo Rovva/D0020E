@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SendToMysql {
 	
@@ -60,11 +61,21 @@ public class SendToMysql {
         	Statement myStatement = myConnection.createStatement();
         	ResultSet myResultSet;
         	for(int i = 0; i < station_weather.size(); i++) {
-        		myResultSet = myStatement.executeQuery("INSERT INTO datareceiver_roadeyedata (timestamp, "
+        		String date = station_date.get(i);
+        		Timestamp ts = Timestamp.valueOf(date);
+        		
+        		String query = "INSERT INTO datareceiver_roadeyedata (timestamp, "
         				+ "latitude, longitude, road_temperature, air_temperature, air_humidity) "
-        				+ "VALUES ('" + station_date.get(i) + "', '" + station_latitude.get(i) + "', '" +
-        				station_longitude.get(i) + "', '" + station_road.get(i) + "', '" + station_air.get(i) + "', '"
-        				+ station_humid.get(i) + "')");
+        				+ "VALUES (?, ?, ?, ?, ?, ?)";
+        		PreparedStatement prep = myConnection.prepareStatement(query);
+        		prep.setTimestamp(1, ts);
+        		prep.setFloat(2, station_latitude.get(i));
+        		prep.setFloat(3, station_longitude.get(i));
+        		prep.setFloat(4, station_road.get(i));
+        		prep.setFloat(5, station_air.get(i));
+        		prep.setFloat(6, station_humid.get(i));
+        		prep.executeUpdate();
+        		
         	}
         	//ResultSet myResultSet = myStatement.executeQuery("INSERT INTO datareceiver_roadeyedata");
         	
