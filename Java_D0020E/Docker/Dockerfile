@@ -32,8 +32,9 @@ COPY . .
 
 WORKDIR /opt/rcm-java/xml_fetch
 
-RUN javac -d build *.java
+RUN javac *.java
 
 WORKDIR /opt/rcm-java
 
-CMD ["java -cp xml_fetch/mysql-connector-java-5.1.45-bin.jar:. xml_fetch.Run"]
+CMD ["/sbin/my_init"]
+

@@ -27,7 +27,11 @@ public class Run {
 			format.combineData();
 			mysql.readData();
 			mysql.insertToMysql();
-			Thread.sleep(6 * 60 * 60 * 1000);
+			try	{
+				Thread.sleep(6 * 60 * 60 * 1000);
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
 		}
 		
 	}
