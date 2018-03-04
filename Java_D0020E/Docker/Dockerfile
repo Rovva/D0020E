@@ -32,7 +32,7 @@ COPY . .
 
 WORKDIR /opt/rcm-java/xml_fetch
 
-RUN javac -d build ./*
+RUN javac -d build *.java
 
 WORKDIR /opt/rcm-java
 
