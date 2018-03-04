@@ -27,7 +27,7 @@ public class Run {
 			format.combineData();
 			mysql.readData();
 			mysql.insertToMysql();
-			Thread.sleep(6 *
+			sleep(6 *
 					 60 *   // minutes to sleep
 		             60 *   // seconds to a minute
 		             1000); // milliseconds to a second
