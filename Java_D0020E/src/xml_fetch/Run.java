@@ -27,8 +27,9 @@ public class Run {
 			format.combineData();
 			mysql.readData();
 			mysql.insertToMysql();
+			System.out.println("Finished mysql");
 			try	{
-				Thread.sleep(6 * 60 * 60 * 1000);
+				Thread.sleep(60 * 60 * 1000);
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			}
