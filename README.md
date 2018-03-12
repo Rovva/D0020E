@@ -25,6 +25,9 @@ git clone https://github.com/Rovva/D0020E
 cd Road-Condition-Monitoring && ./deploy
 ```
 
+## Data
+Data gathered from 2018-03-05 to 2018-03-07 can be imported from ``` sql\table_plus_data.sql ```
+
 ### For all
 The database import is done under `scripts/` the
 `scripts/connection.js` connects to the remote SQL database. The host,
