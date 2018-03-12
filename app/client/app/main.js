@@ -306,7 +306,7 @@ function submit (graph) {
 		for(var i = 0; i < filters.filters.length;i++){		//use callback after loop finished?
 		
 			var api = new Api();
-			api.request("air_temperature",{"filters":filters.filters[i]},{
+			api.request("data",{"filters":filters.filters[i]},{
 				onData: function(data) {
 					console.log(JSON.stringify(data));
 					graphData.push(data);

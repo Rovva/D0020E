@@ -79,8 +79,8 @@ router.post("/points", function(req, res) {
 	});
 });
 
-
-router.post("/air_temperature", function(req, res) {
+//data query
+router.post("/data", function(req, res) {
 	
 	console.log(JSON.stringify(req.filters,undefined,2));
 	var dataType = req.body.filters.dataType;
@@ -99,7 +99,7 @@ router.post("/air_temperature", function(req, res) {
 	query.query(function(resp, obj, err) {
 		if(err == null){
 			temp = resp.aggregations.air_temp;
-			console.log("unformated data:" + JSON.stringify(temp,undefined,2));
+			//console.log("unformated data:" + JSON.stringify(temp,undefined,2));
 			var data = [];
 			for(var i = 0; i < temp.buckets.length;i++){
 				data.push({key:temp.buckets[i].key, date:temp.buckets[i].date.buckets[0].key_as_string});
