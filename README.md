@@ -63,7 +63,6 @@ Source code for the web frontend.
 Source code for the `nodejs` backend.
 
 
-###### Build by  Christoffer Rova, Ludvig Isaksson, Christina
-Källkrans, Robin Rubindal and Anton Tiberg.
+###### Build by  Christoffer Rova, Ludvig Isaksson, Christina Källkrans, Robin Rubindal and Anton Tiberg.
 ###### This project is based upon
 https://github.com/kitzin/Road-Condition-Monitoring
