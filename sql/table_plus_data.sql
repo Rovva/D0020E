@@ -21484,9 +21484,7 @@ INSERT INTO `datareceiver_roadeyedata` (`id`, `timestamp`, `latitude`, `longitud
 -- Indexes for table `datareceiver_roadeyedata`
 --
 ALTER TABLE `datareceiver_roadeyedata`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `timestamp` (`timestamp`,`latitude`,`longitude`);
-
+  ADD PRIMARY KEY (`id`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
