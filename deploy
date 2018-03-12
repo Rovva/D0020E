@@ -4,8 +4,6 @@ RCM_EXPORT_IP=8080
 RCM_EL="rcm-elasticsearch"
 RCM_NET="rcm-network"
 
-./deploy-myadmin
-
 docker network create $RCM_NET
 docker run -d --name=$RCM_EL --net=$RCM_NET elasticsearch
 
@@ -16,6 +14,11 @@ docker run -d -p $RCM_EXPORT_IP:80 --name=rcm-web --net=$RCM_NET rcm-web
 #wait for elasticsearch to start
 sleep 5
 
+docker run --name rcm-mysql --net=$RCM_NET -e MYSQL_ROOT_PASSWORD="pass" -e MYSQL_DATABASE="db" -e MYSQL_USER="user" -e MYSQL_PASSWORD="pass" -d mysql:8.0.3
+
+docker run --name rcm-myadmin --net=$RCM_NET -d --link rcm-mysql:db  -p 8181:80 phpmyadmin/phpmyadmin
+
 # Pull the rows from mysql db to elasticsearch
 docker build --build-arg elasticsearch_ip=$RCM_EL -t rcm-pull scripts/
 docker run -d --net=$RCM_NET --name=rcm-pull rcm-pull
+
