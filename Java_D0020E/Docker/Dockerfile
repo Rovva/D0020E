@@ -36,5 +36,4 @@ RUN javac *.java
 
 WORKDIR /opt/rcm-java
 
-CMD ["/sbin/my_init"]
-
+CMD ["/opt/rcm-java/start.sh"]

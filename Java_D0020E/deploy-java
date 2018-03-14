@@ -3,14 +3,9 @@
 
 RCM_NET="rcm-network"
 
-#docker build --name rcm-java --net=$RCM_NET -d --link rcm-mysql:db rcm-java Docker/
-
 docker rm -f rcm-java
 cp src/xml_fetch/* Docker/xml_fetch/
 docker build -t rcm-java Docker/
 docker run --net=$RCM_NET --link rcm-mysql:db --name rcm-java rcm-java
 
-// Does not work somehow, you need to manually start 
-// the java program with: "sudo docker exec -it rcm-java /bin/bash"
-// and then type "sh start.sh"
-//docker exec rcm-java /opt/rcm-java/start.sh
+docker exec rcm-java /opt/rcm-java/start.sh

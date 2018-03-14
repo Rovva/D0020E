@@ -2,6 +2,9 @@ package xml_fetch;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +40,7 @@ public class SendToMysql {
 		       station_humid.add(Float.parseFloat(array[6]));
 		    }
 		    formatDate();
+		    br.close();
 		} catch(Exception e) {
 			System.out.println("Something went wrong...");
 		}
@@ -60,28 +64,39 @@ public class SendToMysql {
         	Connection myConnection = DriverManager.getConnection(dbUrl, username, password);
         	Statement myStatement = myConnection.createStatement();
         	ResultSet myResultSet;
+
         	for(int i = 0; i < station_weather.size(); i++) {
         		String date = station_date.get(i);
         		Timestamp ts = Timestamp.valueOf(date);
         		
-        		String query = "INSERT INTO datareceiver_roadeyedata (timestamp, "
-        				+ "latitude, longitude, road_temperature, air_temperature, air_humidity) "
-        				+ "VALUES (?, ?, ?, ?, ?, ?)";
+        		String query = "SELECT * FROM datareceiver_roadeyedata WHERE timestamp = ? AND latitude LIKE ? AND longitude LIKE ?";
         		PreparedStatement prep = myConnection.prepareStatement(query);
         		prep.setTimestamp(1, ts);
         		prep.setFloat(2, station_latitude.get(i));
-        		prep.setFloat(3, station_longitude.get(i));
-        		prep.setFloat(4, station_road.get(i));
-        		prep.setFloat(5, station_air.get(i));
-        		prep.setFloat(6, station_humid.get(i));
-        		prep.executeUpdate();
-        		
+        		prep.setFloat(3,  station_longitude.get(i));
+        		ResultSet set = prep.executeQuery();
+
+        		if(set.next()) {
+        			break;
+        		} else {
+            		String query2 = "INSERT INTO datareceiver_roadeyedata (timestamp, "
+            				+ "latitude, longitude, road_temperature, air_temperature, air_humidity) "
+            				+ "VALUES (?, ?, ?, ?, ?, ?)";
+            		PreparedStatement prep2 = myConnection.prepareStatement(query2);
+            		prep2.setTimestamp(1, ts);
+            		prep2.setFloat(2, station_latitude.get(i));
+            		prep2.setFloat(3, station_longitude.get(i));
+            		prep2.setFloat(4, station_road.get(i));
+            		prep2.setFloat(5, station_air.get(i));
+            		prep2.setFloat(6, station_humid.get(i));
+            		prep2.executeUpdate();
+        		}        		
         	}
-        	//ResultSet myResultSet = myStatement.executeQuery("INSERT INTO datareceiver_roadeyedata");
         	
     	} catch(Exception e) {
     		System.out.println(e.getMessage());
     	}
+		System.out.println("Finished mysql");
     }
     
     public void testMysql() {
