@@ -51,7 +51,11 @@ Use fast_restart to rebuild after changes.
 ```
 ./fast_restart
 ```
+## Start the Java-backend
+The "Java-backend" pulls data from Trafikverkets with the Datex II standard, every 10 minutes. To set a different timespan, simply edit the file start.sh, Java_D0020E/Docker/start.sh on the row where sleep is and set another value. To make the backend pull data every hour, simply edit to "sleep 1h". See this link for more information: https://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/
 
+Deploy the backend:
+sh Java_D0020E/deploy-java
 
 ## Development
 Here are some information about continuing the development of this project.
