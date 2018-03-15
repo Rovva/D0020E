@@ -1,0 +1,13 @@
+Vi upptäckte ett problem mot slutet av vårt projektarbete, knappen "new filter" är ifrån det gamla logiksystemet och vi har gjort
+ett nytt. Men om man tar bort new filter knappen så buggar tidsintervallen när man skapar en ny graph, den proppar in datum 
+istället för tid i första tidsintervallet. (Denna bugg har troligen att göra med CSS'ens interaktion med javascripten i client/app/modul).
+Vi hann ej lösa den, men nu vet ni att den finns och ett humm av vart buggen härstammar.
+
+Andra problem med det nuvarande stadiet av projektet är att om man skriver in bokstäver eller andra fel i tidsintervallen/datum
+när man gör en ny graf så buggar graf hanteringen och programmet måste startas om. Det finns ytterst lite error-hantering just nu i 
+projektet så det är en allmän brist.
+
+Det finns säkert fler brister som vi är omedvetna om, men om vi kan svara på något för framtida utvecklare så kommer vi att svara 
+så bäst vi kan. 
+
+Lycka till!
